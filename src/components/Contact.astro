@@ -1,0 +1,15 @@
+---
+// src/components/Contact.astro
+const phone = '0612345678';
+const email = 'jasper@maatwerkopwielen.nl';
+---
+<section id="contact" class="py-16 bg-white">
+  <div class="container mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold mb-4">Contact</h2>
+    <p class="mb-6">Bel of mail voor een vrijblijvende kennismaking.</p>
+    <div class="flex flex-col md:flex-row justify-center gap-4">
+      <a href={`tel:+31${phone}`} class="px-6 py-3 bg-primary text-white rounded-full">Bel {phone}</a>
+      <a href={`mailto:${email}`} class="px-6 py-3 bg-gray-200 rounded-full">{email}</a>
+    </div>
+  </div>
+</section>
