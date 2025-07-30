@@ -1,5 +1,6 @@
 ---
-// Global metadata
+// src/layouts/BaseLayout.astro
+import '../styles/tailwind.css';
 const { title = 'Maatwerk op Wielen – Auto‑makelaar', description = 'Onafhankelijke hulp bij kopen of verkopen van uw auto.' } = Astro.props;
 ---
 
@@ -14,7 +15,6 @@ const { title = 'Maatwerk op Wielen – Auto‑makelaar', description = 'Ona
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <!-- Tailwind output -->
-    <link href="/styles.css" rel="stylesheet" />
   </head>
   <body class="font-sans antialiased text-gray-900">
     <slot />            {/* page content injected here */}

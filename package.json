@@ -12,5 +12,8 @@
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.12.6",
     "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@ampproject/remapping": "^2.3.0"
   }
 }
