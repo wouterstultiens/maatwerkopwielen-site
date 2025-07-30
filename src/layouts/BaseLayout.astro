@@ -1,0 +1,22 @@
+---
+// Global metadata
+const { title = 'Maatwerk op Wielen – Auto‑makelaar', description = 'Onafhankelijke hulp bij kopen of verkopen van uw auto.' } = Astro.props;
+---
+
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- OpenGraph for share previews -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <!-- Tailwind output -->
+    <link href="/styles.css" rel="stylesheet" />
+  </head>
+  <body class="font-sans antialiased text-gray-900">
+    <slot />            {/* page content injected here */}
+  </body>
+</html>

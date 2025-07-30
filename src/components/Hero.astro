@@ -1,0 +1,20 @@
+---
+const phone = '0612345678';
+---
+
+<section id="hero" class="bg-gray-100 py-24">
+  <div class="container mx-auto px-6 text-center">
+    <h1 class="text-4xl md:text-5xl font-extrabold">
+      Uw <span class="text-red-600">onafhankelijke</span> auto‑makelaar
+    </h1>
+    <p class="mt-4 max-w-2xl mx-auto">
+      Bespaar tijd en geld bij het kopen <em>of</em> verkopen van uw auto – eerlijk, transparant tarief.
+    </p>
+    <a
+      href={`tel:+31${phone}`}
+      class="inline-block mt-8 px-8 py-4 rounded-full bg-red-600 text-white hover:bg-red-700 transition"
+    >
+      Bel nu {phone}
+    </a>
+  </div>
+</section>
