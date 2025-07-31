@@ -1,20 +1,16 @@
 ---
-const phone = '0612345678';
 ---
-
-<section id="hero" class="bg-gray-100 py-24">
-  <div class="container mx-auto px-6 text-center">
-    <h1 class="text-4xl md:text-5xl font-extrabold">
-      Uw <span class="text-red-600">onafhankelijke</span> auto‑makelaar
+<section id="hero" class="relative isolate overflow-hidden bg-white">
+  <div class="container mx-auto px-6 py-32 text-center">
+    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
+      Onafhankelijke <span class="text-primary">auto‑makelaar</span> voor particulieren
     </h1>
-    <p class="mt-4 max-w-2xl mx-auto">
-      Bespaar veel tijd en geld bij het kopen <em>of</em> verkopen van uw auto – eerlijk, transparant tarief.
+    <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-700">
+      Bespaar tijd, geld en zorgen bij het kopen <em>of</em> verkopen van uw auto. Eén contactpersoon, helder tarief.
     </p>
-    <a
-      href={`tel:+31${phone}`}
-      class="inline-block mt-8 px-8 py-4 rounded-full bg-red-600 text-white hover:bg-red-700 transition"
-    >
-      Bel nu {phone}
-    </a>
+    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#services" class="px-8 py-4 rounded-full bg-primary text-white hover:bg-red-700 transition">Bekijk mijn diensten</a>
+      <a href="tel:+31612345678" class="px-8 py-4 rounded-full bg-gray-200 hover:bg-gray-300 transition">Bel 06 12345678</a>
+    </div>
   </div>
 </section>

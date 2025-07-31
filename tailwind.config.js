@@ -1,10 +1,10 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+export default {
   content: ['./src/**/*.{astro,html,js,jsx,ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        primary: '#b91c1c',
+        primary: 'var(--color-primary)',
         dark: '#1e293b',
       },
       fontFamily: {
@@ -12,5 +12,6 @@ module.exports = {
       },
     },
   },
-  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],
+  // The entire plugins array has been removed.
+  plugins: [],
 };

@@ -1,22 +1,25 @@
 ---
-// src/components/Services.astro
 const services = [
-  { icon: '🚗', title: 'Aankoopbegeleiding', desc: 'Ik zoek, inspecteer en onderhandel voor de beste prijs.' },
-  { icon: '🤝', title: 'Verkoopbemiddeling', desc: 'Uw auto verkopen zonder marktplaats‑stress en proefrit‑tijd.' },
-  { icon: '📑', title: 'Taxatie & Check', desc: 'RDW‑rapport, onderhoudshistorie en technische keuring.' },
+  { icon: '🔍', title: 'Zoekservice', price: '€ 95', desc: 'Actief zoeken naar geschikte auto’s op basis van uw wensen & budget.' },
+  { icon: '🛠️', title: 'Aankoopkeuring + Onderhandeling', price: '€ 295', desc: 'Technische inspectie op locatie en professionele prijs­onderhandeling.' },
+  { icon: '🤝', title: 'Volledige Aankoop­begeleiding', price: '€ 495', desc: 'Van zoektocht tot aflever­moment: alles geregeld, inclusief papierwerk.' },
+  { icon: '💸', title: 'Verkoop­bemiddeling', price: '€ 195 + 3 %*', desc: 'No‑cure‑no‑pay. Wij adverteren, screenen kijkers en onderhandelen.' },
+  { icon: '📑', title: 'Taxatie & Waardebepaling', price: '€ 99', desc: 'Objectieve waardebepaling voor verkoop of verzekering.' },
 ];
 ---
-<section id="services" class="py-16 bg-gray-50">
+<section id="services" class="py-20 bg-white">
   <div class="container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-10">Diensten</h2>
+    <h2 class="text-3xl font-bold text-center mb-12">Diensten &amp; prijzen</h2>
     <div class="grid md:grid-cols-3 gap-8">
       {services.map(s => (
-        <article class="p-6 bg-white rounded-lg shadow hover:shadow-md transition">
+        <article class="flex flex-col p-6 bg-gray-50 rounded-lg shadow hover:shadow-md transition">
           <div class="text-4xl">{s.icon}</div>
           <h3 class="mt-4 text-xl font-semibold">{s.title}</h3>
-          <p class="mt-2 text-gray-600">{s.desc}</p>
+          <p class="mt-2 text-gray-600 flex-grow">{s.desc}</p>
+          <p class="mt-4 text-primary font-bold text-lg">{s.price}</p>
         </article>
       ))}
     </div>
+    <p class="mt-6 text-sm text-gray-500 text-center">* Commissie over daadwerkelijke verkoopprijs.</p>
   </div>
 </section>

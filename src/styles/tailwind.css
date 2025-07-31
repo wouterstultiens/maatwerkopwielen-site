@@ -1,3 +1,12 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+:root {
+  /* Primary color can be changed in one place */
+  --color-primary: #dc2626;
+  /* red-600 */
+}
+
+/* Utility class for smooth section scroll offset */
+:target {
+  scroll-margin-top: 6rem;
+}
