@@ -1,25 +1,46 @@
 ---
+// src/components/Navbar.astro
+const phone = "06 2796 65314";
 const links = [
-  { href: '#services', label: 'Diensten & Prijzen' },
-  { href: '#process', label: 'Werkwijze' },
-  { href: '#trust', label: 'Waarom ik?' },
-  { href: '#testimonials', label: 'Ervaringen' },
-  { href: '#contact', label: 'Contact' },
+  { href: "#usp", label: "Waarom ik?" },
+  { href: "#about", label: "Over mij" },
+  { href: "#services", label: "Diensten & prijzen" },
+  { href: "#process", label: "Werkwijze" },
+  { href: "#testimonials", label: "Ervaringen" },
+  { href: "#contact", label: "Contact" },
 ];
 ---
-<header class="fixed top-0 inset-x-0 bg-white/80 backdrop-blur border-b border-gray-200 z-50">
-  <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+
+<header
+  class="fixed top-0 inset-x-0 bg-white/80 backdrop-blur border-b border-gray-200 z-50"
+>
+  <nav
+    class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16"
+  >
     <a href="#" class="flex items-center gap-2 font-semibold text-lg">
       <img src="/logo.svg" alt="Logo" class="h-8 w-auto" />
-      <span>Maatwerk op Wielen</span>
     </a>
+
     <ul class="hidden md:flex items-center gap-6">
-      {links.map(l => (
-        <li><a href={l.href} class="text-sm font-medium hover:text-primary transition">{l.label}</a></li>
-      ))}
+      {
+        links.map((l) => (
+          <li>
+            <a
+              href={l.href}
+              class="text-sm font-medium hover:text-primary transition"
+            >
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
     </ul>
-    <a href="tel:+31612345678" class="hidden md:inline-block px-4 py-2 rounded-full bg-primary text-white text-sm hover:bg-red-700 transition">
-      Bel 06 12345678
+
+    <a
+      href={`tel:+31${phone.replace(/\D/g, "")}`}
+      class="hidden md:inline-block px-4 py-2 rounded-full bg-primary text-white text-sm hover:bg-red-700 transition"
+    >
+      Bel {phone}
     </a>
   </nav>
 </header>

@@ -1,20 +1,20 @@
 ---
-const reviews = [
-  { name: 'Anneké (Groningen)', quote: 'Jasper vond een betrouwbare auto én regelde alles. Een zorg minder!'},
-  { name: 'Mark (Arnhem)', quote: 'Binnen 2 weken mijn Golf verkocht voor € 1.200 boven mijn verwachting.' },
-  { name: 'Linda (Utrecht)', quote: 'Geen stress, Jasper onderhandelde scherp voor mijn nieuwe lease‑auto.' },
-];
+// src/components/Testimonials.astro
+import reviews from "../../data/testimonials.json";
 ---
+
 <section id="testimonials" class="py-20 bg-gray-100">
   <div class="container mx-auto px-6">
     <h2 class="text-3xl font-bold text-center mb-12">Ervaringen van klanten</h2>
     <div class="grid md:grid-cols-3 gap-8">
-      {reviews.map(r => (
-        <blockquote class="bg-white p-6 rounded-lg shadow">
-          <p class="italic text-gray-700">“{r.quote}”</p>
-          <footer class="mt-4 text-primary font-semibold">— {r.name}</footer>
-        </blockquote>
-      ))}
+      {
+        reviews.map((r) => (
+          <blockquote class="bg-white p-6 rounded-lg shadow">
+            <p class="italic text-gray-700">“{r.quote}”</p>
+            <footer class="mt-4 text-primary font-semibold">— {r.name}</footer>
+          </blockquote>
+        ))
+      }
     </div>
   </div>
 </section>

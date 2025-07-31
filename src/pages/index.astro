@@ -1,25 +1,33 @@
 ---
-import Layout from '../layouts/BaseLayout.astro';
-import Navbar from '../components/Navbar.astro';
-import Hero from '../components/Hero.astro';
-import Services from '../components/Services.astro';
-import Process from '../components/Process.astro';
-import WhyMe from '../components/WhyMe.astro';
-import Testimonials from '../components/Testimonials.astro';
-import FAQ from '../components/FAQ.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+// src/pages/index.astro
+import Layout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import Hero from "../components/Hero.astro";
+import USP from "../components/USP.astro";
+import About from "../components/About.astro";
+import Process from "../components/Process.astro";
+import Services from "../components/Services.astro";
+import IntakeCTA from "../components/IntakeCTA.astro";
+import Testimonials from "../components/Testimonials.astro";
+import FAQ from "../components/FAQ.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+import LegalNotice from "../components/LegalNotice.astro";
 ---
+
 <Layout>
   <Navbar />
   <main class="pt-16">
     <Hero />
-    <Services />
+    <USP />
+    <About />
     <Process />
-    <WhyMe />
+    <Services />
+    <IntakeCTA />
     <Testimonials />
     <FAQ />
     <Contact />
   </main>
   <Footer />
+  <LegalNotice />
 </Layout>

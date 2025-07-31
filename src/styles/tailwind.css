@@ -1,12 +1,17 @@
+/* src/styles/tailwind.css */
 @import "tailwindcss";
 
 :root {
-  /* Primary color can be changed in one place */
+  /* wijzig hier om het thema aan te passen */
   --color-primary: #dc2626;
   /* red-600 */
+  --color-secondary: #0f172a;
+  /* slate-900 */
+  --color-accent: #facc15;
+  /* amber-400 */
 }
 
-/* Utility class for smooth section scroll offset */
+/* anchor-offset voor fixed navbar */
 :target {
   scroll-margin-top: 6rem;
 }

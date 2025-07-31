@@ -1,0 +1,17 @@
+---
+// src/components/IntakeCTA.astro
+const phone = "06 2796 65314";
+---
+
+<section class="py-16 bg-primary text-white text-center">
+  <h2 class="text-3xl font-bold mb-4">Kennismaken?</h2>
+  <p class="mb-6">
+    Plan een gratis intakegesprek – telefonisch, video of op locatie.
+  </p>
+  <a
+    href={`tel:+31${phone.replace(/\D/g, "")}`}
+    class="px-8 py-4 bg-white text-primary rounded-full font-semibold"
+  >
+    Bel {phone}
+  </a>
+</section>

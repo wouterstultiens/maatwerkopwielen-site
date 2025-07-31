@@ -1,0 +1,26 @@
+---
+// src/components/About.astro
+const photo = "/owner.jpg"; /* vervang met echte foto */
+---
+
+<section id="about" class="py-20 bg-white">
+  <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+    <img
+      src={photo}
+      alt="Portret Jasper Zweers"
+      class="rounded-2xl shadow-lg w-full h-auto object-cover"
+    />
+    <div>
+      <h2 class="text-3xl font-bold mb-4">Over mij</h2>
+      <p class="mb-4">
+        Ik ben <strong>Jasper Zweers</strong> (32) uit Heerde – gek op auto’s en
+        nog gekker op het helpen van mensen. In een branche vol targets en verkooppraatjes
+        kies ik bewust voor <em>persoonlijke, transparante begeleiding</em>.
+      </p>
+      <p>
+        U houdt de regie, ik doe het werk: zoeken, controleren, onderhandelen en
+        afleveren. Uw auto, uw wensen – <strong>mijn werk</strong>.
+      </p>
+    </div>
+  </div>
+</section>

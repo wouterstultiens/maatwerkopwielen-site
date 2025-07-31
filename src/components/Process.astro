@@ -1,22 +1,44 @@
 ---
+// src/components/Process.astro
 const steps = [
-  { n: 1, title: 'Kennismaken', desc: 'We bespreken uw wensen, situatie en budget.'},
-  { n: 2, title: 'Zoeken & Checken', desc: 'Ik zoek geschikte auto’s en voer een grondige controle uit.'},
-  { n: 3, title: 'Onderhandeling', desc: 'U profiteert van mijn netwerk & scherpe onderhandeling.'},
-  { n: 4, title: 'Afronding & Overdracht', desc: 'Papierwerk, betaling en aflevering worden geregeld.'},
+  {
+    n: 1,
+    title: "Kennismaken",
+    desc: "We bespreken uw wensen, situatie en budget.",
+  },
+  {
+    n: 2,
+    title: "Zoeken & Checken",
+    desc: "Ik selecteer geschikte auto’s en voer een grondige controle uit.",
+  },
+  {
+    n: 3,
+    title: "Onderhandeling",
+    desc: "U profiteert van mijn netwerk & scherpe onderhandeling.",
+  },
+  {
+    n: 4,
+    title: "Afronding & Overdracht",
+    desc: "Papierwerk, betaling en aflevering worden geregeld.",
+  },
 ];
 ---
+
 <section id="process" class="py-20 bg-white">
   <div class="container mx-auto px-6">
     <h2 class="text-3xl font-bold text-center mb-12">Hoe werkt het?</h2>
     <ol class="relative border-l border-gray-300 max-w-xl mx-auto">
-      {steps.map(s => (
-        <li class="mb-10 ml-6">
-          <span class="absolute -left-3 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-sm">{s.n}</span>
-          <h3 class="font-semibold">{s.title}</h3>
-          <p class="text-gray-600">{s.desc}</p>
-        </li>
-      ))}
+      {
+        steps.map((s) => (
+          <li class="mb-10 ml-6">
+            <span class="absolute -left-3 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-sm">
+              {s.n}
+            </span>
+            <h3 class="font-semibold">{s.title}</h3>
+            <p class="text-gray-600">{s.desc}</p>
+          </li>
+        ))
+      }
     </ol>
   </div>
 </section>

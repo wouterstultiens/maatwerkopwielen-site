@@ -1,12 +1,11 @@
-# Maatwerk op Wielen – Auto‑makelaar
+<!-- README.md -->
+# Maatwerk op Wielen – Auto-makelaar
 
-Persoonlijk, onafhankelijk en transparant advies bij het kopen of verkopen van uw auto.
+Onafhankelijk, persoonlijk en transparant advies bij het kopen of verkopen van uw auto.
 
 ## Ontwikkelen
 
 ```bash
 npm install
-npm run dev
-```
-
-De primaire kleur instellen? Pas `--color-primary` in `src/styles/tailwind.css` aan – geen codewijziging nodig!
+npm run dev          # lokaal
+npm run build        # productie-build

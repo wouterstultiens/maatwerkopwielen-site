@@ -1,14 +1,23 @@
 ---
-const phone = '06 12345678';
-const email = 'info@maatwerkopwielen.nl';
+// src/components/Contact.astro
+const phone = "06 2796 65314";
+const email = "info@maatwerkopwielen.nl";
 ---
+
 <section id="contact" class="py-20 bg-gray-100">
   <div class="container mx-auto px-6 text-center">
-    <h2 class="text-3xl font-bold mb-4">Kennismaken?</h2>
+    <h2 class="text-3xl font-bold mb-4">Vragen of interesse?</h2>
     <p class="mb-6">Bel of mail voor een vrijblijvende afspraak.</p>
     <div class="flex flex-col md:flex-row justify-center gap-4">
-      <a href={`tel:+31${phone.replace(/\D/g,'')}`} class="px-6 py-3 bg-primary text-white rounded-full">{phone}</a>
-      <a href={`mailto:${email}`} class="px-6 py-3 bg-white border border-gray-300 rounded-full">{email}</a>
+      <a
+        href={`tel:+31${phone.replace(/\D/g, "")}`}
+        class="px-6 py-3 bg-primary text-white rounded-full">{phone}</a
+      >
+      <a
+        href={`mailto:${email}`}
+        class="px-6 py-3 bg-white border border-gray-300 rounded-full"
+        >{email}</a
+      >
     </div>
   </div>
 </section>

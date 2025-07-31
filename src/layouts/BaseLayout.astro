@@ -1,16 +1,25 @@
 ---
-import '../styles/tailwind.css';
-const { title = 'Maatwerk op Wielen – Uw Auto‑makelaar', description = 'Eerlijk advies & begeleiding bij kopen of verkopen van uw auto.' } = Astro.props;
+// src/layouts/BaseLayout.astro
+import "../styles/tailwind.css";
+const {
+  title = "Maatwerk op Wielen – Uw auto-makelaar",
+  description = "Eerlijk advies & begeleiding bij het kopen of verkopen van uw auto.",
+} = Astro.props;
 ---
+
 <html lang="nl">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+
+    <!-- OpenGraph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:image" content="/owner .png" />
+
     <link rel="icon" href="/favicon.svg" />
   </head>
   <body class="font-sans antialiased text-gray-900 bg-gray-50">
