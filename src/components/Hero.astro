@@ -16,18 +16,22 @@ const photo = "/owner.jpg";
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
           <a
-            href="#services"
-            class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary-dark transition-colors duration-300 font-semibold shadow"
+            href={`tel:+31${phone.replace(/\D/g, "")}`}
+            class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary-light transition-colors duration-300 font-semibold shadow-lg focus:outline-none focus:ring-2 focus:ring-primary-dark"
+            aria-label="Plan uw gratis intakegesprek"
+            data-event="cta_click"
+            data-label="plan_intake_hero"
           >
-            Bekijk mijn diensten
+            Plan uw gratis intakegesprek
           </a>
           <a
-            href={`tel:+31${phone.replace(/\D/g, "")}`}
-            class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary-dark transition-colors duration-300 font-semibold shadow border-2 border-primary"
-            style="box-shadow: 0 4px 24px rgba(30,64,175,0.12);"
+            href="#services"
+            class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white text-primary hover:bg-accent transition-colors duration-300 font-semibold focus:outline-none focus:ring-2 focus:ring-primary-dark"
+            aria-label="Bekijk onze diensten"
+            data-event="cta_click"
+            data-label="view_services_hero"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h2a2 2 0 012 2v10a2 2 0 01-2 2H3m0-14h18a2 2 0 012 2v10a2 2 0 01-2 2H3m0-14v14"/></svg>
-            Bel {phone}
+            Bekijk onze diensten
           </a>
         </div>
       </div>

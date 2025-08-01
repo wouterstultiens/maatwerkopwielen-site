@@ -37,10 +37,13 @@ const links = [
     </ul>
 
     <a
-      href={`tel:+31${phone.replace(/\D/g, "")}`}
-      class="hidden md:inline-block px-4 py-2 rounded-full bg-primary text-white text-sm hover:bg-red-700 transition"
+      href="#intake"
+      data-event="cta_click"
+      data-label="plan_intake_navbar"
+      class="hidden md:inline-block px-6 py-3 rounded-full bg-primary text-white text-base font-semibold hover:bg-primary-light transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-dark"
+      aria-label="Plan uw gratis intakegesprek"
     >
-      Bel {phone}
+      Plan intake
     </a>
   </nav>
 </header>
