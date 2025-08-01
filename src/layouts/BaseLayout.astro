@@ -1,5 +1,4 @@
 ---
-// src/layouts/BaseLayout.astro
 import "../styles/tailwind.css";
 const {
   title = "Maatwerk op Wielen – Uw auto-makelaar",
@@ -7,34 +6,73 @@ const {
 } = Astro.props;
 ---
 
-<html lang="nl">
+<html lang="nl" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-
-    <!-- OpenGraph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="/owner.png" />
-
     <link rel="icon" href="/favicon.svg" />
+
+    <!-- Fonts & Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-1PxSLqk...=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
-  <body class="font-sans antialiased text-gray-900 bg-gray-50">
-    <slot />
-    <div class="fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 py-3 flex justify-center items-center gap-6 z-50">
-      <a href="https://wa.me/316279665314" aria-label="WhatsApp" class="text-gray-600 hover:text-primary text-2xl">
-        <span aria-hidden="true">💬</span>
-      </a>
-      <a href="tel:+316279665314" aria-label="Bel via telefoon" class="text-gray-600 hover:text-primary text-2xl">
-        <span aria-hidden="true">📞</span>
-      </a>
-      <a href="mailto:info@maatwerkopwielen.nl" aria-label="Mail" class="text-gray-600 hover:text-primary text-2xl">
-        <span aria-hidden="true">✉️</span>
-      </a>
-    </div>
-  
+
+  <body class="font-sans antialiased text-charcoal bg-snow-gray">
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 inset-x-0 bg-white/90 backdrop-blur shadow-sm z-50">
+      <div
+        class="container mx-auto flex items-center justify-between py-4 px-4"
+      >
+        <a href="#hero"
+          ><img src="/logo.svg" alt="Maatwerk op Wielen" class="h-8" /></a
+        >
+
+        <ul class="hidden md:flex items-center gap-6 font-medium">
+          <li><a href="#usp" class="hover:text-coral">Voordelen</a></li>
+          <li><a href="#proces" class="hover:text-coral">Proces</a></li>
+          <li><a href="#over" class="hover:text-coral">Over</a></li>
+          <li><a href="#reviews" class="hover:text-coral">Reviews</a></li>
+          <li><a href="#tarief" class="hover:text-coral">Tarieven</a></li>
+        </ul>
+
+        <a
+          href="#contact"
+          class="hidden md:inline-flex items-center gap-2 bg-coral text-white py-2 px-4 rounded-lg hover:shadow-lg"
+        >
+          <i class="fa-regular fa-calendar-check"></i> Intake
+        </a>
+      </div>
+    </nav>
+
+    <!-- Page content -->
+    <main class="pt-20"><slot /></main>
+
+    <!-- FOOTER -->
+    <footer class="bg-trust-blue text-snow-gray py-10 text-sm">
+      <div
+        class="container mx-auto px-4 flex flex-col md:flex-row justify-between gap-4"
+      >
+        <p>© 2025 Maatwerk op Wielen</p>
+        <nav class="flex gap-4">
+          <a href="/privacy.pdf" class="hover:underline">Privacyverklaring</a>
+          <a href="/cookies.pdf" class="hover:underline">Cookieverklaring</a>
+          <a href="#" class="hover:underline">Disclaimer</a>
+        </nav>
+      </div>
+    </footer>
   </body>
 </html>

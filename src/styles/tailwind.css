@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Roboto:wght@400;700&display=swap');
-/* src/styles/tailwind.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* anchor-offset voor fixed navbar */
+/* extra scroll-offset voor anchor-links i.c.m. fixed navbar */
 :target {
   scroll-margin-top: 6rem;
 }
