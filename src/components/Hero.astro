@@ -1,28 +1,41 @@
 ---
 // src/components/Hero.astro
 const phone = "06 2796 65314";
+const photo = "/owner.jpg";
 ---
 
-<section id="hero" class="relative isolate overflow-hidden bg-white">
-  <div class="container mx-auto px-6 py-32 text-center">
-    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">
-      Onafhankelijke <span class="text-primary">auto-makelaar</span> zonder gedoe
-    </h1>
-    <p class="mt-6 max-w-3xl mx-auto text-lg text-gray-700">
-      Bespaar tijd, geld en zorgen bij het kopen <em>of</em> verkopen van uw auto.
-      Eén contactpersoon, helder tarief.
-    </p>
-    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-      <a
-        href="#services"
-        class="px-8 py-4 rounded-full bg-primary text-white hover:bg-red-700 transition"
-        >Bekijk mijn diensten</a
-      >
-      <a
-        href={`tel:+31${phone.replace(/\D/g, "")}`}
-        class="px-8 py-4 rounded-full bg-gray-200 hover:bg-gray-300 transition"
-        >Bel {phone}</a
-      >
+<section id="hero" class="relative isolate overflow-hidden bg-gradient-to-b from-gray-50 to-white">
+  <div class="container mx-auto px-6 py-20 md:py-32">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="order-2 md:order-1 text-left space-y-6">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+          Uw <span class="text-primary">persoonlijke automakelaar</span> – zonder gedoe
+        </h1>
+        <p class="text-lg text-secondary-light max-w-2xl">
+          Hallo, ik ben <span class="font-semibold text-secondary">Jasper Zweers</span>. Ik help u bij het vinden, aankopen en afleveren van de juiste auto. Geen verkooppraatjes, maar een persoonlijke aanpak waarbij uw wensen voorop staan.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a
+            href="#services"
+            class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-primary text-white hover:bg-primary-dark transition-colors duration-300 font-semibold shadow"
+          >
+            Bekijk mijn diensten
+          </a>
+          <a
+            href={`tel:+31${phone.replace(/\D/g, "")}`}
+            class="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-secondary-light text-secondary hover:bg-primary-light transition-colors duration-300 font-semibold shadow"
+          >
+            Bel {phone}
+          </a>
+        </div>
+      </div>
+      <div class="order-1 md:order-2 flex justify-center">
+        <img
+          src={photo}
+          alt="Jasper Zweers automakelaar"
+          class="rounded-2xl shadow-xl w-64 h-64 object-cover border-4 border-primary"
+        />
+      </div>
     </div>
   </div>
 </section>

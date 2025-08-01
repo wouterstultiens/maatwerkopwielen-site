@@ -1,15 +1,7 @@
 /* src/styles/tailwind.css */
-@import "tailwindcss";
-
-:root {
-  /* wijzig hier om het thema aan te passen */
-  --color-primary: #dc2626;
-  /* red-600 */
-  --color-secondary: #0f172a;
-  /* slate-900 */
-  --color-accent: #facc15;
-  /* amber-400 */
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 /* anchor-offset voor fixed navbar */
 :target {
