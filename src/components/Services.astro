@@ -2,25 +2,25 @@
 // src/components/Services.astro
 const services = [
   {
-    icon: "🤝",
+    icon: "handshake",
     title: "Volledige aankoopbegeleiding",
     price: "v.a. € 595",
     desc: "Ik zoek en vergelijk auto's op basis van uw wensen, controleer de historie en technische staat, onderhandel namens u en regel de aflevering bij u thuis of op locatie. U hoeft alleen te kiezen – ik doe de rest.",
   },
   {
-    icon: "🌍",
+    icon: "globe-alt",
     title: "Importservice",
     price: "€ 895 + kosten",
     desc: "Wilt u een auto uit het buitenland? Ik verzorg het volledige importtraject: van het zoeken en onderhandelen tot BPM-berekening, RDW-keuring en aflevering met Nederlands kenteken. U krijgt heldere uitleg en geen verrassingen.",
   },
   {
-    icon: "💸",
+    icon: "currency-euro",
     title: "Verkoopbemiddeling",
     price: "€ 195 + 3 %",
     desc: "Wilt u uw auto verkopen? Ik maak professionele advertenties, regel bezichtigingen en onderhandel met potentiële kopers. No-cure-no-pay: u betaalt alleen bij succes.",
   },
   {
-    icon: "📑",
+    icon: "document-text",
     title: "Taxatie & waardebepaling",
     price: "€ 99",
     desc: "Twijfelt u over de waarde van uw auto? Ik bied een objectieve taxatie voor verkoop, verzekering of inruil. U ontvangt een helder rapport en eerlijk advies.",
@@ -31,11 +31,17 @@ const services = [
 <section id="services" class="py-20 bg-white">
   <div class="container mx-auto px-6">
     <h2 class="text-3xl font-bold text-center mb-12">Diensten &amp; prijzen</h2>
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
       {
         services.map((s) => (
-          <article class="flex flex-col p-6 bg-gray-50 rounded-lg shadow hover:shadow-md transition">
-            <div class="text-4xl">{s.icon}</div>
+          <article class="flex flex-col p-4 sm:p-6 bg-gray-50 rounded-lg shadow hover:shadow-md transition">
+            <div class="flex items-center justify-center text-primary mb-4">
+              <img
+                src={`https://unpkg.com/heroicons@2.0.13/24/solid/${s.icon}.svg`}
+                alt={s.title}
+                class="h-12 w-12"
+              />
+            </div>
             <h3 class="mt-4 text-xl font-semibold">{s.title}</h3>
             <p class="mt-2 text-gray-600 flex-grow">{s.desc}</p>
             <p class="mt-4 text-primary font-bold text-lg">{s.price}</p>

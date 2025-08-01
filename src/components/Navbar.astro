@@ -21,13 +21,45 @@ const links = [
       <img src="/logo.svg" alt="Logo" class="h-8 w-auto" />
     </a>
 
+    <div class="md:hidden">
+      <details class="relative">
+        <summary class="flex items-center cursor-pointer p-2 focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Open menu">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <ul class="flex flex-col items-start gap-4 bg-white absolute top-full right-0 mt-2 p-4 rounded-lg shadow-lg">
+          {
+            links.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="text-sm font-medium hover:text-primary hover:underline transition focus:outline-none focus:ring-2 focus:ring-primary"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a
+              href="#intake"
+              data-event="cta_click"
+              data-label="plan_intake_navbar"
+              class="block w-full text-center px-6 py-3 rounded-full bg-primary text-white text-base font-semibold hover:bg-primary-light transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-light"
+              aria-label="Plan uw gratis intakegesprek"
+            >
+              Plan intake
+            </a>
+          </li>
+        </ul>
+      </details>
+    </div>
     <ul class="hidden md:flex items-center gap-6">
       {
         links.map((l) => (
           <li>
             <a
               href={l.href}
-              class="text-sm font-medium hover:text-primary transition"
+              class="text-sm font-medium hover:text-primary hover:underline transition focus:outline-none focus:ring-2 focus:ring-primary relative [&[aria-current='page']]:text-primary"
             >
               {l.label}
             </a>
@@ -46,4 +78,21 @@ const links = [
       Plan intake
     </a>
   </nav>
+  <script type="module" is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const navLinks = document.querySelectorAll('header nav a');
+      function setActiveLink() {
+        const hash = window.location.hash || '#';
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === hash) {
+            link.setAttribute('aria-current', 'page');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      }
+      setActiveLink();
+      window.addEventListener('hashchange', setActiveLink);
+    });
+  </script>
 </header>

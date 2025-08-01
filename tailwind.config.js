@@ -3,6 +3,16 @@
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,ts,tsx}'],
   theme: {
+    container: {
+      center: true,
+      screens: {
+        sm: '100%',
+        md: '100%',
+        lg: '1024px',
+        xl: '1280px',
+        '2xl': '1440px',
+      },
+    },
     extend: {
       colors: {
         primary: '#1E40AF', // Deep blue

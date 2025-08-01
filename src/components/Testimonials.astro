@@ -3,19 +3,19 @@
 import reviews from "../../data/testimonials.json";
 ---
 
-<section id="testimonials" class="py-20 bg-gray-100">
-  <div class="container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12">Ervaringen van klanten</h2>
-    <div class="grid md:grid-cols-3 gap-8">
+<section id="testimonials" class="py-20 sm:py-24 md:py-32 lg:py-40 bg-gray-100">
+  <div class="container mx-auto px-6 max-w-5xl">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 sm:mb-16">Ervaringen van klanten</h2>
+    <div class="grid md:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
       {
         reviews.map((r) => (
-          <blockquote class="bg-white p-6 rounded-xl shadow-lg border border-primary/10 relative">
+          <blockquote class="bg-white p-4 sm:p-6 rounded-xl shadow-lg border border-primary/10 relative">
             <div class="absolute top-4 right-4 flex items-center gap-2">
               <span class="inline-block bg-primary text-white text-xs px-2 py-1 rounded font-semibold">Echte klant</span>
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
             </div>
-            <p class="italic text-gray-700">“{r.quote}”</p>
-            <footer class="mt-4 text-primary font-semibold">— {r.name}</footer>
+            <p class="italic text-gray-700 text-lg leading-relaxed">“{r.quote}”</p>
+            <footer class="mt-4 text-primary font-semibold text-base">— {r.name}</footer>
           </blockquote>
         ))
       }

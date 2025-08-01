@@ -28,21 +28,21 @@ const faqs = [
 ];
 ---
 
-<section id="faq" class="py-24 bg-gray-50">
+<section id="faq" class="py-20 sm:py-24 md:py-32 lg:py-40 bg-gray-50">
   <div class="container mx-auto px-6 max-w-2xl">
-    <h2 class="text-3xl font-bold text-center mb-12 text-primary">Veelgestelde vragen</h2>
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-16 text-primary">Veelgestelde vragen</h2>
     <div class="space-y-6">
       {
         faqs.map((f) => (
-          <details class="group bg-white rounded-xl shadow-md p-6 transition-all duration-300 open:shadow-lg open:border-primary border border-gray-200">
-            <summary class="cursor-pointer text-lg font-semibold text-secondary flex items-center justify-between">
+          <details class="group bg-white rounded-xl shadow-md p-4 sm:p-6 transition-all duration-300 open:shadow-lg open:border-primary border border-gray-200">
+            <summary class="cursor-pointer text-lg sm:text-xl font-semibold text-secondary flex items-center justify-between gap-2">
               <span class="flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                 {f.q}
               </span>
               <span class="ml-2 group-open:rotate-180 transition-transform duration-300">&#9660;</span>
             </summary>
-            <div class="mt-4 text-gray-600">{f.a}</div>
+            <div class="mt-4 text-gray-600 text-lg leading-relaxed">{f.a}</div>
           </details>
         ))
       }
