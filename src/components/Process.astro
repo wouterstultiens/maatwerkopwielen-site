@@ -24,18 +24,26 @@ const steps = [
 ];
 ---
 
-<section id="process" class="py-20 bg-white">
+<section id="process" class="py-32 bg-gray-50">
   <div class="container mx-auto px-6">
-    <h2 class="text-3xl font-bold text-center mb-12">Hoe werkt het?</h2>
-    <ol class="relative border-l border-gray-300 max-w-xl mx-auto">
+    <h2 class="text-4xl font-bold text-center mb-16 text-primary">Hoe werkt het?</h2>
+    <ol class="relative border-l-4 border-primary max-w-3xl mx-auto pl-8">
       {
         steps.map((s) => (
-          <li class="mb-10 ml-6">
-            <span class="absolute -left-3 flex items-center justify-center w-6 h-6 rounded-full bg-primary text-white text-sm">
+          <li class="mb-16 ml-6 relative">
+            <span class="absolute -left-8 flex items-center justify-center w-14 h-14 rounded-full bg-primary text-white text-2xl font-bold shadow-lg border-4 border-white">
               {s.n}
             </span>
-            <h3 class="font-semibold">{s.title}</h3>
-            <p class="text-gray-600">{s.desc}</p>
+            <div class="ml-2">
+              <h3 class="text-xl md:text-2xl font-semibold mb-2 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" fill="none"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12l2 2 4-4" />
+                </svg>
+                {s.title}
+              </h3>
+              <p class="text-gray-700 text-lg">{s.desc}</p>
+            </div>
           </li>
         ))
       }
