@@ -1,33 +1,184 @@
 ---
-// src/pages/index.astro
 import Layout from "../layouts/BaseLayout.astro";
-import Navbar from "../components/Navbar.astro";
-import Hero from "../components/Hero.astro";
-import USP from "../components/USP.astro";
-import About from "../components/About.astro";
-import Process from "../components/Process.astro";
-import Services from "../components/Services.astro";
-import IntakeCTA from "../components/IntakeCTA.astro";
-import Testimonials from "../components/Testimonials.astro";
-import FAQ from "../components/FAQ.astro";
-import Contact from "../components/Contact.astro";
-import Footer from "../components/Footer.astro";
-import LegalNotice from "../components/LegalNotice.astro";
+import testimonials from "../../data/testimonials.json";
 ---
-
 <Layout>
-  <Navbar />
-  <main class="pt-16">
-    <Hero />
-    <USP />
-    <About />
-    <Process />
-    <Services />
-    <IntakeCTA />
-    <Testimonials />
-    <FAQ />
-    <Contact />
+  <!-- Navbar -->
+  <nav class="fixed top-0 inset-x-0 z-50 bg-white shadow">
+    <div class="container mx-auto flex items-center justify-between py-4 px-6">
+      <a href="/" aria-label="Home">
+        <img src="/logo.svg" alt="Maatwerk op Wielen logo" class="h-8"/>
+      </a>
+      <ul class="hidden md:flex space-x-6">
+        <li><a href="#about" class="text-navy hover:text-coral">About</a></li>
+        <li><a href="#services" class="text-navy hover:text-coral">Services</a></li>
+        <li><a href="#process" class="text-navy hover:text-coral">Process</a></li>
+        <li><a href="#testimonials" class="text-navy hover:text-coral">Testimonials</a></li>
+        <li><a href="#faq" class="text-navy hover:text-coral">FAQ</a></li>
+        <li><a href="#contact" class="text-navy hover:text-coral">Contact</a></li>
+      </ul>
+      <div class="flex items-center space-x-4">
+        <a href="https://wa.me/316279665314" aria-label="WhatsApp" class="text-navy hover:text-coral text-2xl">
+          <!-- WhatsApp icon placeholder -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M..." /></svg>
+        </a>
+        <a href="tel:+316279665314" aria-label="Phone" class="text-navy hover:text-coral text-2xl">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M..." /></svg>
+        </a>
+        <a href="mailto:jasper@maatwerk-op-wielen.nl" aria-label="Email" class="text-navy hover:text-coral text-2xl">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M..." /></svg>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="pt-20">
+    <!-- Hero Section -->
+    <section id="hero" class="bg-grey bg-cover bg-center h-screen flex items-center" style="background-image:url('/hero-placeholder.jpg')">
+      <div class="container mx-auto text-center px-6">
+        <h1 class="text-4xl md:text-6xl font-heading text-navy mb-4">Maatwerk op wielen, zonder gedoe.</h1>
+        <p class="text-lg md:text-xl font-body text-navy mb-6">Persoonlijke auto-makelaardij voor uw perfecte voertuig.</p>
+        <a href="#contact" class="inline-block bg-coral text-white font-body py-3 px-6 rounded shadow hover:bg-gold" aria-label="Start your free intake">Start your free intake</a>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-heading text-navy mb-6">About Jasper</h2>
+        <p class="font-body text-gray-700 mb-4">Mijn naam is Jasper Zweers – automakelaar met een passie voor auto’s én service. Ik help particulieren en ondernemers bij het vinden, aankopen en afleveren van de juiste auto. Geen standaard verkooppraatjes, maar een persoonlijke aanpak waarbij úw wensen voorop staan.</p>
+        <p class="font-body text-gray-700">U vertelt wat u zoekt – ik regel de rest. Zo bespaart u tijd, geld én frustratie.</p>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-grey">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-heading text-navy mb-8 text-center">Services</h2>
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div class="bg-white p-6 rounded shadow text-center">
+            <h3 class="font-heading text-xl text-navy mb-2">Independent Advice</h3>
+            <p class="font-body text-gray-700">Vertegenwoordiging van uw belang, zonder verkoopdruk.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow text-center">
+            <h3 class="font-heading text-xl text-navy mb-2">Vetted Cars</h3>
+            <p class="font-body text-gray-700">Toegang tot betrouwbare auto’s via een betrouwbaar netwerk.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow text-center">
+            <h3 class="font-heading text-xl text-navy mb-2">Negotiation</h3>
+            <p class="font-body text-gray-700">Scherpe onderhandeling en grondige controle.</p>
+          </div>
+          <div class="bg-white p-6 rounded shadow text-center">
+            <h3 class="font-heading text-xl text-navy mb-2">Personal Guidance</h3>
+            <p class="font-body text-gray-700">Volledige begeleiding van intake tot aflevering.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-heading text-navy mb-8 text-center">Our Process</h2>
+        <div class="flex flex-col md:flex-row items-center justify-between space-y-8 md:space-y-0 md:space-x-8">
+          <div class="flex-1 text-center">
+            <div class="mb-4">
+              <!-- Icon Placeholder -->
+              <svg class="h-12 w-12 text-coral mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M..."/></svg>
+            </div>
+            <h3 class="font-heading text-xl text-navy">Intake</h3>
+          </div>
+          <div class="flex-1 text-center">
+            <div class="mb-4">
+              <svg class="h-12 w-12 text-coral mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M..."/></svg>
+            </div>
+            <h3 class="font-heading text-xl text-navy">Search</h3>
+          </div>
+          <div class="flex-1 text-center">
+            <div class="mb-4">
+              <svg class="h-12 w-12 text-coral mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M..."/></svg>
+            </div>
+            <h3 class="font-heading text-xl text-navy">Inspection</h3>
+          </div>
+          <div class="flex-1 text-center">
+            <div class="mb-4">
+              <svg class="h-12 w-12 text-coral mx-auto" fill="currentColor" viewBox="0 0 24 24"><path d="M..."/></svg>
+            </div>
+            <h3 class="font-heading text-xl text-navy">Delivery</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-grey">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-heading text-navy mb-8 text-center">Testimonials</h2>
+        <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          {testimonials.map(({ name, quote }) => (
+            <blockquote class="bg-white p-6 rounded shadow">
+              <p class="font-body text-gray-700 mb-4">“{quote}”</p>
+              <footer class="text-sm font-heading text-navy text-right">— {name}</footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl font-heading text-navy mb-8 text-center">Frequently Asked Questions</h2>
+        <dl class="space-y-6">
+          <div>
+            <dt class="font-heading text-lg text-navy">Wat kost jouw dienstverlening als automakelaar?</dt>
+            <dd class="mt-2 font-body text-gray-700">Mijn bemiddelingskosten starten vanaf €595 incl. btw voor volledige begeleiding; bij complexere opdrachten spreken we een passende prijs af.</dd>
+          </div>
+          <div>
+            <dt class="font-heading text-lg text-navy">Is het intakegesprek echt gratis?</dt>
+            <dd class="mt-2 font-body text-gray-700">Ja, het eerste gesprek is volledig kosteloos en vrijblijvend; u beslist daarna of u verder wilt.</dd>
+          </div>
+          <div>
+            <dt class="font-heading text-lg text-navy">Wat krijg ik precies voor dat bedrag?</dt>
+            <dd class="mt-2 font-body text-gray-700">Complete ontzorging bij aankoop: advies, zoeken, selectie, controle, onderhandeling en begeleiding bij levering.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-grey">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-heading text-navy mb-6">Contact</h2>
+        <p class="font-body text-gray-700 mb-4">Neem contact op via telefoon, e-mail of WhatsApp voor uw gratis intakegesprek.</p>
+        <div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6">
+          <a href="tel:+316279665314" class="flex items-center font-body text-navy hover:text-coral">
+            <svg class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M..."/></svg> +31 6 2796 65314
+          </a>
+          <a href="mailto:jasper@maatwerk-op-wielen.nl" class="flex items-center font-body text-navy hover:text-coral">
+            <svg class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M..."/></svg> jasper@maatwerk-op-wielen.nl
+          </a>
+          <a href="https://wa.me/316279665314" class="inline-block bg-coral text-white font-body py-3 px-6 rounded shadow hover:bg-gold" aria-label="Contact via WhatsApp">Contact via WhatsApp</a>
+        </div>
+        <p class="mt-6 font-body text-gray-600">KVK: 00000000</p>
+      </div>
+    </section>
   </main>
-  <Footer />
-  <LegalNotice />
+
+  <!-- Footer -->
+  <footer class="bg-navy text-grey py-6">
+    <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center">
+      <div class="space-y-1 text-center md:text-left">
+        <p class="font-body">© 2025 Maatwerk op Wielen</p>
+        <p class="font-body">Email: jasper@maatwerk-op-wielen.nl | Tel: +31 6 2796 65314</p>
+        <p class="font-body">KVK: 00000000</p>
+      </div>
+      <ul class="flex space-x-4 mt-4 md:mt-0">
+        <li><a href="#about" class="hover:text-coral">About</a></li>
+        <li><a href="#services" class="hover:text-coral">Services</a></li>
+        <li><a href="#process" class="hover:text-coral">Process</a></li>
+        <li><a href="#contact" class="hover:text-coral">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
 </Layout>
