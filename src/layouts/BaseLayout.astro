@@ -1,5 +1,7 @@
 ---
 import "../styles/tailwind.css";
+import { Icon } from "astro-icon/components";
+
 const {
   title = "Maatwerk op Wielen – Uw auto-makelaar",
   description = "Eerlijk advies & begeleiding bij het kopen of verkopen van uw auto.",
@@ -22,6 +24,7 @@ const {
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- keeping FA as fallback if needed -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
@@ -37,9 +40,9 @@ const {
       <div
         class="container mx-auto flex items-center justify-between py-4 px-4"
       >
-        <a href="#hero"
-          ><img src="/public/logo.svg" alt="Maatwerk op Wielen" class="h-8" /></a
-        >
+        <a href="#hero">
+          <img src="/public/logo.svg" alt="Maatwerk op Wielen" class="h-8" />
+        </a>
 
         <ul class="hidden md:flex items-center gap-6 font-medium">
           <li><a href="#usp" class="hover:text-coral">Voordelen</a></li>
@@ -53,7 +56,8 @@ const {
           href="#contact"
           class="hidden md:inline-flex items-center gap-2 bg-coral text-white py-2 px-4 rounded-lg hover:shadow-lg"
         >
-          <i class="fa-regular fa-calendar-check"></i> Intake
+          <Icon name="ic:baseline-event-available" class="w-4 h-4" />
+          Intake
         </a>
       </div>
     </nav>
