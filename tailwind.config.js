@@ -8,16 +8,28 @@ export default {
       screens: { sm: '100%', md: '100%', lg: '1024px', xl: '1280px', '2xl': '1440px' },
     },
     extend: {
+      /* Colour tokens now read from CSS variables.
+       * All existing utility classes keep working.
+       */
       colors: {
-        'trust-blue': '#183153',
-        coral: '#FF6B5E',
-        'honey-gold': '#D4AF37',
-        'snow-gray': '#F9FAFC',
-        charcoal: '#212529',
+        /* semantic names */
+        primary:   'rgb(var(--primary) / <alpha-value>)',
+        secondary: 'rgb(var(--secondary) / <alpha-value>)',
+        accent:    'rgb(var(--accent) / <alpha-value>)',
+        surface:   'rgb(var(--surface) / <alpha-value>)',
+        neutral:   'rgb(var(--neutral) / <alpha-value>)',
+
+        /* legacy names already used in your markup */
+        'trust-blue':  'rgb(var(--primary) / <alpha-value>)',
+        coral:         'rgb(var(--accent)  / <alpha-value>)',
+        'honey-gold':  'rgb(var(--secondary) / <alpha-value>)',
+        'snow-gray':   'rgb(var(--surface) / <alpha-value>)',
+        charcoal:      'rgb(var(--neutral) / <alpha-value>)',
       },
+
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['\"Playfair Display\"', 'serif'],
+        sans:  ['Inter', 'sans-serif'],
+        serif: ['"Playfair Display"', 'serif'],
       },
     },
   },
