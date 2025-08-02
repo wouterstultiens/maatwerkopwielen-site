@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
 import testimonials from "../../data/testimonials.json";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout
@@ -39,7 +40,7 @@ import testimonials from "../../data/testimonials.json";
         href="#contact"
         class="inline-flex items-center gap-2 bg-coral py-3 px-8 rounded-lg text-white text-lg font-medium shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-coral/40"
       >
-        <i class="fa-regular fa-calendar-check"></i> Plan gratis intake
+        <Icon name="ic:baseline-calendar-today" class="w-5 h-5" /> Plan gratis intake
       </a>
     </div>
   </section>
@@ -51,29 +52,30 @@ import testimonials from "../../data/testimonials.json";
         {
           [
             {
-              icon: "shield-check",
+              icon: "ic:baseline-verified-user",
               title: "100% onafhankelijk",
               text: "Geen voorraad, geen verkooppraatjes – alleen uw belang.",
             },
             {
-              icon: "key",
+              icon: "ic:baseline-vpn-key",
               title: "Top-aanbod op maat",
               text: "Dealers, veilingen en particulieren in heel Nederland.",
             },
             {
-              icon: "handshake",
+              icon: "ic:baseline-handshake",
               title: "Onderhandelen & check",
               text: "U bespaart tijd en geld; elke auto wordt grondig gecontroleerd.",
             },
             {
-              icon: "user-check",
+              icon: "ic:baseline-person",
               title: "Eén aanspreekpunt",
               text: "Persoonlijk contact – reactie op WhatsApp binnen 24 uur.",
             },
           ].map(({ icon, title, text }) => (
             <div class="group p-6 bg-white rounded-2xl shadow-md transition hover:shadow-lg hover:-translate-y-1">
-              <i
-                class={`fa-solid fa-${icon} text-coral text-3xl mb-4 transition group-hover:scale-110`}
+              <Icon
+                name={icon}
+                class="w-8 h-8 text-coral mb-4 transition group-hover:scale-110"
               />
               <h3 class="text-trust-blue font-semibold mb-2">{title}</h3>
               <p class="text-charcoal/90 text-sm leading-relaxed">{text}</p>
@@ -97,28 +99,28 @@ import testimonials from "../../data/testimonials.json";
         {
           [
             {
-              icon: "comments",
+              icon: "ic:baseline-question-answer",
               step: "1. Intake",
               desc: "Uw wensen, budget en planning helder in kaart.",
             },
             {
-              icon: "search",
+              icon: "ic:baseline-search",
               step: "2. Zoeken",
               desc: "Selectie van geschikte auto’s uit vertrouwde bronnen.",
             },
             {
-              icon: "clipboard-check",
+              icon: "ic:baseline-assignment-turned-in",
               step: "3. Controle & deal",
               desc: "Historie-check, proefrit en scherpe onderhandeling.",
             },
             {
-              icon: "car-side",
+              icon: "ic:baseline-directions-car",
               step: "4. Levering",
               desc: "Bij u thuis of op locatie – rijklaar en zonder zorgen.",
             },
           ].map(({ icon, step, desc }) => (
             <div class="text-center flex flex-col items-center">
-              <i class={`fa-solid fa-${icon} text-coral text-4xl mb-4`} />
+              <Icon name={icon} class="w-10 h-10 text-coral mb-4" />
               <h3 class="text-trust-blue font-semibold mb-1">{step}</h3>
               <p class="text-charcoal/90 text-sm">{desc}</p>
             </div>
@@ -253,21 +255,21 @@ import testimonials from "../../data/testimonials.json";
           href="https://wa.me/316279665314"
           class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-coral text-white font-medium rounded-lg shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-coral/40"
         >
-          <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          <Icon name="ic:baseline-whatsapp" class="w-5 h-5" /> WhatsApp
         </a>
 
         <a
           href="tel:+316279665314"
           class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-trust-blue text-white font-medium rounded-lg shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-trust-blue/40"
         >
-          <i class="fa-solid fa-phone"></i> Bel nu
+          <Icon name="ic:baseline-call" class="w-5 h-5" /> Bel nu
         </a>
 
         <a
           href="mailto:jasper@maatwerk-op-wielen.nl"
           class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-honey-gold text-white font-medium rounded-lg shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-honey-gold/40"
         >
-          <i class="fa-regular fa-envelope"></i> E-mail
+          <Icon name="ic:baseline-email" class="w-5 h-5" /> E-mail
         </a>
       </div>
     </div>

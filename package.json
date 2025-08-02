@@ -13,7 +13,9 @@
   },
   "devDependencies": {
     "@astrojs/tailwind": "^6.0.2",
+    "@iconify-json/ic": "^1.2.2",
     "@tailwindcss/vite": "^4.1.11",
+    "astro-icon": "^1.1.5",
     "tailwindcss": "^3.4.17"
   }
 }
