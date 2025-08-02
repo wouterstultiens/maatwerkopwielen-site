@@ -14,66 +14,117 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <link rel="icon" href="/favicon.svg" />
 
-    <!-- Fonts & Icons -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <!-- keeping FA as fallback if needed -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-      integrity="sha512-1PxSLqk...=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <!-- Google fonts already loaded in tailwind.css -->
   </head>
 
   <body class="font-sans antialiased text-charcoal bg-snow-gray">
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 inset-x-0 bg-white/90 backdrop-blur shadow-sm z-50">
-      <div
-        class="container mx-auto flex items-center justify-between py-4 px-4"
-      >
-        <a href="#hero">
-          <img
-            src="/public/logo.svg"
-            alt="Maatwerk op Wielen"
-            class="h-10 sm:h-12 md:h-16 lg:h-20"
-          />
+    <!-- ░░ NAVBAR ░░ -->
+    <nav
+      id="site-nav"
+      class="fixed inset-x-0 top-0 z-50 bg-white/90 backdrop-blur-md
+                shadow-sm transition-transform duration-300 will-change-transform"
+    >
+      <div class="container flex items-center justify-between py-4">
+        <!-- logo -->
+        <a href="/" class="flex items-center gap-2">
+          <img src="/logo.svg" alt="Maatwerk op Wielen" class="h-10 sm:h-12" />
         </a>
 
-        <ul class="hidden md:flex items-center gap-6 font-medium">
-          <li><a href="#usp" class="hover:text-coral">Voordelen</a></li>
-          <li><a href="#proces" class="hover:text-coral">Proces</a></li>
-          <li><a href="#over" class="hover:text-coral">Over</a></li>
-          <li><a href="#reviews" class="hover:text-coral">Reviews</a></li>
-          <li><a href="#tarief" class="hover:text-coral">Tarieven</a></li>
+        <!-- desktop links -->
+        <ul class="hidden lg:flex items-center gap-8 font-medium text-neutral">
+          <li>
+            <a
+              href="#usp"
+              class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0
+                      after:bg-primary after:transition-all hover:after:w-full"
+            >
+              Voordelen
+            </a>
+          </li>
+          <li>
+            <a
+              href="#proces"
+              class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+              >Proces</a>
+          </li>
+          <li>
+            <a
+              href="#over"
+              class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+              >Over</a>
+          </li>
+          <li>
+            <a
+              href="#reviews"
+              class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+              >Reviews</a>
+          </li>
+          <li>
+            <a
+              href="#tarief"
+              class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+              >Tarieven</a>
+          </li>
         </ul>
 
+        <!-- desktop cta -->
         <a
           href="#contact"
-          class="hidden md:inline-flex items-center gap-2 bg-coral text-white py-2 px-4 rounded-lg hover:shadow-lg"
+          class="hidden lg:inline-flex items-center gap-2 bg-primary text-white
+                  rounded-lg px-5 py-2 shadow hover:shadow-lg transition"
         >
           <Icon name="ic:baseline-event-available" class="w-4 h-4" />
           Intake
         </a>
+
+        <!-- hamburger -->
+        <button
+          id="nav-toggle"
+          aria-label="Toggle navigatie"
+          class="lg:hidden grid place-content-center w-10 h-10 rounded
+                       text-primary hover:bg-surface/70 transition"
+        >
+          <Icon name="ic:baseline-menu" class="w-6 h-6" />
+        </button>
+      </div>
+
+      <!-- mobile drawer -->
+      <div
+        id="mobile-menu"
+        class="lg:hidden absolute inset-x-0 top-full origin-top
+                  bg-white divide-y divide-surface shadow-lg scale-y-0
+                  transition-transform duration-300"
+      >
+        <a class="block px-6 py-4 font-medium text-neutral" href="#usp"
+          >Voordelen</a
+        >
+        <a class="block px-6 py-4 font-medium text-neutral" href="#proces"
+          >Proces</a
+        >
+        <a class="block px-6 py-4 font-medium text-neutral" href="#over">Over</a
+        >
+        <a class="block px-6 py-4 font-medium text-neutral" href="#reviews"
+          >Reviews</a
+        >
+        <a class="block px-6 py-4 font-medium text-neutral" href="#tarief"
+          >Tarieven</a
+        >
+        <a
+          class="block px-6 py-4 font-semibold text-center bg-primary text-white"
+          href="#contact">Intake</a
+        >
       </div>
     </nav>
 
-    <!-- Page content -->
+    <!-- ░░ PAGE CONTENT ░░ -->
     <main class="pt-20"><slot /></main>
 
-    <!-- FOOTER -->
+    <!-- ░░ FOOTER ░░ -->
     <footer class="bg-trust-blue text-snow-gray py-10 text-sm">
-      <div
-        class="container mx-auto px-4 flex flex-col md:flex-row justify-between gap-4"
-      >
+      <div class="container flex flex-col md:flex-row justify-between gap-4">
         <p>© 2025 Maatwerk op Wielen</p>
         <nav class="flex gap-4">
           <a href="/privacy.pdf" class="hover:underline">Privacyverklaring</a>
@@ -82,5 +133,44 @@ const {
         </nav>
       </div>
     </footer>
+
+    <!-- ░░ SCRIPTS ░░ -->
+    <script is:inline>
+      const nav = document.getElementById("site-nav");
+      const toggleBtn = document.getElementById("nav-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+
+      /* auto-hide on scroll */
+      let lastScroll = 0;
+      const prefersMotion = !window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      window.addEventListener("scroll", () => {
+        const cur = window.scrollY;
+        if (!prefersMotion) return;
+
+        if (cur > lastScroll && cur > 120) {
+          nav.style.transform = "translateY(-100%)";
+        } else {
+          nav.style.transform = "";
+        }
+        lastScroll = cur;
+      });
+
+      /* mobile drawer */
+      toggleBtn.addEventListener("click", () =>
+        mobileMenu.classList.toggle("scale-y-0")
+      );
+
+      /* close drawer on link click */
+      mobileMenu
+        .querySelectorAll("a")
+        .forEach((link) =>
+          link.addEventListener("click", () =>
+            mobileMenu.classList.add("scale-y-0")
+          )
+        );
+    </script>
   </body>
 </html>

@@ -1,6 +1,22 @@
 [
-  { "name": "Anneké (Groningen)", "quote": "Jasper vond binnen een week een betrouwbare hybride. Een zorg minder!" },
-  { "name": "Mark (Arnhem)",     "quote": "Golf verkocht voor € 1.200 boven mijn verwachting. Top!" },
-  { "name": "Linda (Utrecht)",   "quote": "Geen stress, Jasper onderhandelde scherp voor mijn nieuwe lease-auto." },
-  { "name": "Peter (Amsterdam)",  "quote": "Geen verrassingen, geen gedoe - precies wat u zoekt." }
+  {
+    "name": "Anneké – Groningen",
+    "quote": "Jasper vond binnen een week een betrouwbare hybride. Een zorg minder!",
+    "img":  "/testimonials/anneke.jpg"
+  },
+  {
+    "name": "Mark – Arnhem",
+    "quote": "Golf verkocht voor € 1.200 boven mijn verwachting. Top!",
+    "img":  "/cars/mark-golf.jpg"
+  },
+  {
+    "name": "Linda – Utrecht",
+    "quote": "Geen stress, Jasper onderhandelde scherp voor mijn nieuwe lease-auto.",
+    "img":  "/testimonials/linda.jpg"
+  },
+  {
+    "name": "Peter – Amsterdam",
+    "quote": "Geen verrassingen, geen gedoe – precies wat ik zocht.",
+    "img":  "/cars/peter-3008.jpg"
+  }
 ]

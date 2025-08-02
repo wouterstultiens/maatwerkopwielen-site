@@ -8,27 +8,28 @@ import { Icon } from "astro-icon/components";
   title="Maatwerk op Wielen – Persoonlijke automakelaar"
   description="Uw persoonlijke automakelaar – van zoektocht tot aflevering."
 >
-  <!-- HERO -->
+  <!-- ░░ HERO ░░ -->
   <section
     id="hero"
     class="relative min-h-[85vh] flex items-center justify-center"
   >
-    <!-- background image -->
     <img
       src="/auto3.png"
       alt="Moderne auto rijdt door zonnige straat"
       class="absolute inset-0 w-full h-full object-cover"
+      width="1920"
+      height="1080"
       loading="lazy"
     />
-    <!-- dark overlay -->
+
     <div
-      class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/22"
+      class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/25 backdrop-brightness-75"
     >
     </div>
 
     <div class="relative z-10 text-center px-4">
       <h1
-        class="text-snow-gray font-serif text-4xl md:text-6xl leading-tight font-bold mb-4"
+        class="text-snow-gray font-serif text-4xl md:text-6xl font-bold leading-tight mb-4"
       >
         Maatwerk op wielen,<br class="hidden sm:inline" /> zonder gedoe.
       </h1>
@@ -38,16 +39,16 @@ import { Icon } from "astro-icon/components";
 
       <a
         href="#contact"
-        class="inline-flex items-center gap-2 bg-coral py-3 px-8 rounded-lg text-white text-lg font-medium shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-coral/40"
+        class="inline-flex items-center gap-2 bg-primary py-3 px-8 rounded-lg text-white text-lg font-medium shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-primary/40"
       >
         <Icon name="ic:baseline-calendar-today" class="w-5 h-5" /> Plan gratis intake
       </a>
     </div>
   </section>
 
-  <!-- USP GRID -->
-  <section id="usp" class="py-24 bg-snow-gray">
-    <div class="container mx-auto px-4">
+  <!-- ░░ USP GRID ░░ -->
+  <section id="usp" class="py-20 md:py-28 bg-snow-gray">
+    <div class="container">
       <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {
           [
@@ -71,14 +72,16 @@ import { Icon } from "astro-icon/components";
               title: "Eén aanspreekpunt",
               text: "Persoonlijk contact – reactie op WhatsApp binnen 24 uur.",
             },
-          ].map(({ icon, title, text }) => (
-            <div class="group p-6 bg-white rounded-2xl shadow-md transition hover:shadow-lg hover:-translate-y-1">
+          ].map((u) => (
+            <div class="group p-6 bg-white rounded-2xl shadow-md flex flex-col transition hover:shadow-lg hover:-translate-y-1">
               <Icon
-                name={icon}
-                class="w-8 h-8 text-coral mb-4 transition group-hover:scale-110"
+                name={u.icon}
+                class="w-8 h-8 text-primary mb-4 transition group-hover:scale-110"
               />
-              <h3 class="text-trust-blue font-semibold mb-2">{title}</h3>
-              <p class="text-charcoal/90 text-sm leading-relaxed">{text}</p>
+              <h3 class="text-trust-blue font-semibold mb-2">{u.title}</h3>
+              <p class="text-charcoal/90 text-sm leading-relaxed flex-1">
+                {u.text}
+              </p>
             </div>
           ))
         }
@@ -86,9 +89,9 @@ import { Icon } from "astro-icon/components";
     </div>
   </section>
 
-  <!-- PROCES -->
-  <section id="proces" class="py-28 bg-white">
-    <div class="container mx-auto px-4">
+  <!-- ░░ PROCES ░░ -->
+  <section id="proces" class="py-20 md:py-28 bg-white">
+    <div class="container">
       <h2
         class="text-center text-trust-blue font-serif text-3xl md:text-4xl font-bold mb-16"
       >
@@ -118,11 +121,11 @@ import { Icon } from "astro-icon/components";
               step: "4. Levering",
               desc: "Bij u thuis of op locatie – rijklaar en zonder zorgen.",
             },
-          ].map(({ icon, step, desc }) => (
+          ].map((p) => (
             <div class="text-center flex flex-col items-center">
-              <Icon name={icon} class="w-10 h-10 text-coral mb-4" />
-              <h3 class="text-trust-blue font-semibold mb-1">{step}</h3>
-              <p class="text-charcoal/90 text-sm">{desc}</p>
+              <Icon name={p.icon} class="w-10 h-10 text-primary mb-4" />
+              <h3 class="text-trust-blue font-semibold mb-1">{p.step}</h3>
+              <p class="text-charcoal/90 text-sm">{p.desc}</p>
             </div>
           ))
         }
@@ -130,28 +133,28 @@ import { Icon } from "astro-icon/components";
     </div>
   </section>
 
-  <!-- OVER JASPER -->
-  <section id="over" class="py-28 bg-snow-gray">
-    <div class="container mx-auto px-4 grid gap-12 md:grid-cols-2 items-center">
+  <!-- ░░ OVER JASPER ░░ -->
+  <section id="over" class="py-20 md:py-28 bg-snow-gray">
+    <div class="container grid gap-12 md:grid-cols-2 items-center">
       <img
         src="/owner.jpg"
         alt="Portret van Jasper Zweers"
-        class="w-full h-auto rounded-2xl shadow-lg"
+        class="w-full rounded-2xl shadow-lg aspect-[4/3] object-cover"
         loading="lazy"
       />
 
-      <div>
+      <div class="prose max-w-prose md:max-w-none">
         <h2
           class="text-trust-blue font-serif text-3xl md:text-4xl font-bold mb-6"
         >
           Over Jasper
         </h2>
-        <p class="text-charcoal mb-4 leading-relaxed">
+        <p>
           <strong>Jasper Zweers</strong> – automakelaar met passie voor auto’s én
           service. Hij helpt particulieren en ondernemers bij het vinden, aankopen
-          en afleveren van de juiste auto.
+          en leveren van de juiste auto.
         </p>
-        <p class="text-charcoal mb-4 leading-relaxed">
+        <p>
           U vertelt wat u zoekt, Jasper regelt de rest: zoeken, vergelijken,
           onderhandelen en leveren. Zo bespaart u tijd, geld én frustratie.
         </p>
@@ -162,30 +165,29 @@ import { Icon } from "astro-icon/components";
     </div>
   </section>
 
-  <!-- REVIEWS -->
-  <section id="reviews" class="py-28 bg-white">
-    <div class="container mx-auto px-4 text-center">
+  <!-- ░░ REVIEWS ░░ -->
+  <section id="reviews" class="py-20 md:py-28 bg-white">
+    <div class="container text-center">
       <h2
         class="text-trust-blue font-serif text-3xl md:text-4xl font-bold mb-16"
       >
         Ervaringen van klanten
       </h2>
 
-      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
         {
-          testimonials.map(({ name, quote }) => (
-            <figure class="relative bg-snow-gray p-6 rounded-2xl shadow-md">
+          testimonials.map((t) => (
+            <figure class="relative bg-white p-8 rounded-3xl shadow-md flex flex-col">
               <img
-                src={`https://source.unsplash.com/64x64/?portrait&sig=${name}`}
-                alt={name}
-                class="w-12 h-12 rounded-full object-cover absolute -top-6 left-1/2 -translate-x-1/2 border-4 border-white shadow"
-                loading="lazy"
+                src={t.img}
+                alt={t.name}
+                class="w-16 h-16 object-cover rounded-full border-4 border-surface shadow-lg -mt-12 self-center"
               />
-              <blockquote class="mt-6 text-sm text-charcoal mb-4 leading-relaxed">
-                “{quote}”
+              <blockquote class="mt-6 text-neutral/90 leading-relaxed mb-4 flex-1">
+                “{t.quote}”
               </blockquote>
-              <figcaption class="text-trust-blue font-semibold text-xs">
-                — {name}
+              <figcaption class="text-primary font-semibold text-sm text-center">
+                — {t.name}
               </figcaption>
             </figure>
           ))
@@ -194,9 +196,9 @@ import { Icon } from "astro-icon/components";
     </div>
   </section>
 
-  <!-- TARIEF & FAQ -->
-  <section id="tarief" class="py-28 bg-snow-gray">
-    <div class="container mx-auto px-4">
+  <!-- ░░ TARIEF & FAQ ░░ -->
+  <section id="tarief" class="py-20 md:py-28 bg-snow-gray">
+    <div class="container">
       <h2
         class="text-center text-trust-blue font-serif text-3xl md:text-4xl font-bold mb-10"
       >
@@ -224,12 +226,12 @@ import { Icon } from "astro-icon/components";
               q: "Hoe snel reageer je?",
               a: "Jasper reageert op WhatsApp doorgaans binnen 24 uur, ook in het weekend.",
             },
-          ].map(({ q, a }) => (
+          ].map((item) => (
             <details class="border-t border-gray-200 py-4 last:pb-0">
               <summary class="cursor-pointer font-semibold text-trust-blue leading-relaxed">
-                {q}
+                {item.q}
               </summary>
-              <p class="mt-4 text-charcoal text-sm leading-relaxed">{a}</p>
+              <p class="mt-4 text-charcoal text-sm leading-relaxed">{item.a}</p>
             </details>
           ))
         }
@@ -237,9 +239,9 @@ import { Icon } from "astro-icon/components";
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section id="contact" class="py-28 bg-white">
-    <div class="container mx-auto px-4 text-center max-w-xl">
+  <!-- ░░ CONTACT ░░ -->
+  <section id="contact" class="py-20 md:py-28 bg-white">
+    <div class="container text-center max-w-xl">
       <h2
         class="text-trust-blue font-serif text-3xl md:text-4xl font-bold mb-6"
       >
@@ -253,21 +255,27 @@ import { Icon } from "astro-icon/components";
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a
           href="https://wa.me/316279665314"
-          class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-coral text-white font-medium rounded-lg shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-coral/40"
+          class="min-w-[11rem] flex-1 inline-flex items-center justify-center gap-2
+                 px-6 py-3 bg-primary text-white font-medium rounded-lg shadow-lg transition
+                 hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-primary/40"
         >
           <Icon name="ic:baseline-whatsapp" class="w-5 h-5" /> WhatsApp
         </a>
 
         <a
           href="tel:+316279665314"
-          class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-trust-blue text-white font-medium rounded-lg shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-trust-blue/40"
+          class="min-w-[11rem] flex-1 inline-flex items-center justify-center gap-2
+                 px-6 py-3 bg-trust-blue text-white font-medium rounded-lg shadow-lg transition
+                 hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-trust-blue/40"
         >
           <Icon name="ic:baseline-call" class="w-5 h-5" /> Bel nu
         </a>
 
         <a
           href="mailto:jasper@maatwerk-op-wielen.nl"
-          class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 bg-honey-gold text-white font-medium rounded-lg shadow-lg transition hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-honey-gold/40"
+          class="min-w-[11rem] flex-1 inline-flex items-center justify-center gap-2
+                 px-6 py-3 bg-honey-gold text-white font-medium rounded-lg shadow-lg transition
+                 hover:-translate-y-0.5 hover:shadow-xl focus:ring-4 focus:ring-honey-gold/40"
         >
           <Icon name="ic:baseline-email" class="w-5 h-5" /> E-mail
         </a>
