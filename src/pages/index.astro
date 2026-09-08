@@ -787,5 +787,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </script>
 <script src="/main.js" is:inline defer></script>
+<!-- GA4: intake succesvol verzonden -->
+<script>
+(function () {
+  var el = document.getElementById('intake-success');
+  if (!el) return;
+  var pushed = false;
+  var obs = new MutationObserver(check);
+
+  function check() {
+    if (pushed || el.hasAttribute('hidden')) return;
+    pushed = true;
+    obs.disconnect();
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'formulier_verzonden',
+      formulier_naam: 'intake'
+    });
+  }
+
+  obs.observe(el, { attributes: true, attributeFilter: ['hidden'] });
+  check();
+})();
+</script>
 </body>
 </html>
