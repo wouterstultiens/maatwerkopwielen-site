@@ -56,10 +56,9 @@ const lijst = [...autos].sort((a, b) => (volgorde[a.status] ?? 0) - (volgorde[b.
                     <h2 class="autokaart__titel">{titel(a)}</h2>
                     {a.uitvoering && <p class="autokaart__uitv">{a.uitvoering}</p>}
                     <ul class="autokaart__specs">
-                      <li>{a.bouwjaar}</li>
-                      <li>{km(a.kilometerstand)}</li>
-                      <li>{a.brandstof}</li>
-                      <li>{a.transmissie}</li>
+                      {[a.bouwjaar, a.kilometerstand != null ? km(a.kilometerstand) : null, a.brandstof, a.transmissie]
+                        .filter(Boolean)
+                        .map((s) => <li>{s}</li>)}
                     </ul>
                     <div class="autokaart__prijs">
                       <span class="autokaart__vanaf">Vanaf</span>

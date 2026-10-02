@@ -1,7 +1,7 @@
 ---
 import AanbodLayout from "../../layouts/AanbodLayout.astro";
 import {
-  autos, titel, volledigeTitel, bedrag, prijzen, btwLabel, km, statusLabel,
+  autos, titel, volledigeTitel, bedrag, prijzen, btwLabel, km, getal, statusLabel, kentekenMetStreepjes,
 } from "../../lib/aanbod.js";
 
 export function getStaticPaths() {
@@ -17,17 +17,24 @@ const verkocht = a.status === "verkocht";
 const absoluut = (src) => (src.startsWith("http") ? src : "https://maatwerkopwielen.nl" + src);
 
 const specs = [
+  ["Kenteken", a.kenteken ? kentekenMetStreepjes(a.kenteken) : null],
   ["Bouwjaar", a.bouwjaar],
-  ["Kilometerstand", a.kilometerstand != null ? km(a.kilometerstand) : null],
+  ["Kilometerstand", a.kilometerstand != null ? km(a.kilometerstand) + (a.nap ? " (NAP logisch)" : "") : null],
   ["Brandstof", a.brandstof],
   ["Transmissie", a.transmissie],
   ["Vermogen", a.vermogen_pk ? `${a.vermogen_pk} pk` : null],
+  ["Motorinhoud", a.motorinhoud_cc ? `${getal(a.motorinhoud_cc)} cc` : null],
   ["Carrosserie", a.carrosserie],
   ["Kleur", a.kleur],
   ["Deuren", a.deuren],
+  ["Zitplaatsen", a.zitplaatsen],
+  ["Trekgewicht (geremd)", a.trekgewicht_kg ? `${getal(a.trekgewicht_kg)} kg` : null],
+  ["APK geldig tot", a.apk_tot],
   ["Aanbieder", a.aanbieder],
   ["Locatie", a.locatie],
 ].filter(([, v]) => v != null && v !== "");
+
+const kort = [a.bouwjaar, a.kilometerstand != null ? km(a.kilometerstand) : null].filter(Boolean).join(", ");
 
 const whatsappTekst = encodeURIComponent(`Hallo Jasper, ik heb interesse in de ${naam} (${bedrag(p.incl)}) op ${url}`);
 
@@ -38,7 +45,7 @@ const jsonLd = {
   brand: { "@type": "Brand", name: a.merk },
   model: a.model,
   vehicleModelDate: String(a.bouwjaar),
-  mileageFromOdometer: { "@type": "QuantitativeValue", value: a.kilometerstand, unitCode: "KMT" },
+  mileageFromOdometer: a.kilometerstand != null ? { "@type": "QuantitativeValue", value: a.kilometerstand, unitCode: "KMT" } : undefined,
   fuelType: a.brandstof,
   vehicleTransmission: a.transmissie,
   color: a.kleur,
@@ -56,7 +63,7 @@ const jsonLd = {
 ---
 <AanbodLayout
   title={`${naam} | Aanbod Maatwerk op Wielen`}
-  description={`${naam}, ${a.bouwjaar}, ${km(a.kilometerstand)}. Vanaf ${bedrag(p.incl)}. Bekijk de foto's en plan direct een bezichtiging.`}
+  description={`${naam}${kort ? ", " + kort : ""}. Vanaf ${bedrag(p.incl)}. Bekijk de foto's en plan direct een bezichtiging.`}
   canonical={url}
   ogImage={absoluut(a.fotos[0])}
 >
@@ -240,7 +247,7 @@ const jsonLd = {
             <img src={a.fotos[0]} alt="" width="120" height="90" loading="lazy">
             <div>
               <strong>{naam}</strong>
-              <span>{a.bouwjaar} · {km(a.kilometerstand)} · {bedrag(p.incl)}</span>
+              <span>{[a.bouwjaar, a.kilometerstand != null ? km(a.kilometerstand) : null, bedrag(p.incl)].filter(Boolean).join(" · ")}</span>
             </div>
           </div>
 
