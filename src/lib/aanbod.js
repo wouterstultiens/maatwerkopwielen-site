@@ -65,6 +65,30 @@ function vermogenPk(rijen) {
   return kw ? Math.round(kw * 1.35962) : null;
 }
 
+/* De veldnaam verschilt per voertuig (actieradius_extern_oplaadbaar,
+   actie_radius_enkel_elektrisch_wltp, ...), dus pakken we elk actieradius-veld.
+   Alleen velden met "wltp" in de naam zijn gegarandeerd een WLTP-meting;
+   oudere auto's hebben vaak nog een NEDC-waarde. */
+function actieradius(rijen) {
+  const velden = rijen
+    .flatMap((r) => Object.entries(r))
+    .filter(([k, v]) => /actie_?radius/.test(k) && Number(v))
+    .map(([k, v]) => ({ km: Number(v), wltp: /wltp/.test(k) }))
+    .sort((a, b) => b.km - a.km);
+  return velden[0] || { km: null, wltp: false };
+}
+
+/* Bij een (plug-in) hybride is het RDW-vermogen alleen dat van de
+   verbrandingsmotor. Dat zetten we erbij, zodat het niet als systeemvermogen
+   wordt gelezen. */
+function vermogenToelichting(rijen) {
+  const hybride = rijen.some((r) => r.klasse_hybride_elektrisch_voertuig) ||
+    (rijen.some((r) => r.brandstof_omschrijving === "Elektriciteit") && rijen.length > 1);
+  if (!hybride) return null;
+  const motor = rijen.find((r) => r.brandstof_omschrijving && r.brandstof_omschrijving !== "Elektriciteit");
+  return `${(motor?.brandstof_omschrijving || "benzine").toLowerCase()}motor`;
+}
+
 function datum(yyyymmdd) {
   const s = String(yyyymmdd || "");
   return s.length === 8 ? `${s.slice(6)}-${s.slice(4, 6)}-${s.slice(0, 4)}` : null;
@@ -99,6 +123,9 @@ async function rdw(kenteken) {
     bouwjaar: Number(String(r.datum_eerste_toelating).slice(0, 4)) || null,
     brandstof: brandstofLabel(b),
     vermogen_pk: vermogenPk(b),
+    vermogen_toelichting: vermogenToelichting(b),
+    actieradius_km: actieradius(b).km,
+    actieradius_wltp: actieradius(b).wltp,
     carrosserie: geregistreerd(r.inrichting) ? hoofdletters(r.inrichting.toUpperCase()) : null,
     kleur: geregistreerd(r.eerste_kleur) ? hoofdletters(r.eerste_kleur) : null,
     deuren: Number(r.aantal_deuren) || null,
@@ -136,6 +163,8 @@ async function verrijk(a) {
       console.warn(`[aanbod] RDW-gegevens voor ${a.kenteken} niet opgehaald (${e.message}), alleen eigen gegevens gebruikt`);
     }
   }
+  // Vult iemand zelf het (systeem)vermogen in, dan hoort de RDW-toelichting er niet bij.
+  if (eigen.vermogen_pk) delete basis.vermogen_toelichting;
   const auto = { ...basis, ...eigen };
   if (!auto.merk || !auto.model) {
     throw new Error(`[aanbod] ${a.slug || "Auto zonder kenteken"}: vul een kenteken in, of merk en model.`);

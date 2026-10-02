@@ -16,8 +16,8 @@ Het aanbod staat op `/aanbod/`, elke auto krijgt een eigen pagina op `/aanbod/<s
 
 Per auto is het kenteken genoeg voor de voertuiggegevens. Tijdens de build haalt
 de site bij RDW Open Data op: merk, model, bouwjaar, kleur, carrosserie, deuren,
-zitplaatsen, brandstof, vermogen, motorinhoud, trekgewicht, APK-datum en het
-NAP-oordeel. Geen API-sleutel nodig.
+zitplaatsen, brandstof, vermogen, motorinhoud, trekgewicht, APK-datum, het
+NAP-oordeel en bij plug-ins en EV's de elektrische actieradius. Geen API-sleutel nodig.
 
 RDW kent níet: kilometerstand, transmissie, uitvoering, prijs, opties en foto's.
 Die vul je zelf in.
@@ -52,8 +52,11 @@ Die vul je zelf in.
 **Iets van RDW aanpassen?** Zet het veld zelf in het blok, dat gaat altijd voor.
 Bijvoorbeeld `"kleur": "Indium Grey metallic"`, `"model": "Caddy Maxi"` of
 `"brandstof": "Hybride (benzine)"` (RDW registreert niet elke hybride als hybride).
+Bij hybrides geeft RDW alleen het vermogen van de verbrandingsmotor; de site zet
+daar "(benzinemotor)" achter. Vul je zelf `vermogen_pk` in (bijv. het
+systeemvermogen), dan verdwijnt die toelichting.
 Andere velden: `merk`, `bouwjaar`, `carrosserie`, `deuren`, `zitplaatsen`,
-`vermogen_pk`, `motorinhoud_cc`, `trekgewicht_kg`, `apk_tot`, `slug`.
+`vermogen_pk`, `actieradius_km`, `motorinhoud_cc`, `trekgewicht_kg`, `apk_tot`, `slug`.
 
 **Build mislukt?** Kan een kenteken niet bij RDW worden gevonden (tikfout) of is
 RDW onbereikbaar, dan stopt de build met een melding `[aanbod] Kenteken ...`.
