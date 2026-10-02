@@ -1,0 +1,126 @@
+---
+/* Layout voor de aanbodpagina's. Header en footer zijn gelijk aan die van
+   index.astro, maar de links wijzen naar de secties op de homepage. */
+const {
+  title,
+  description,
+  canonical,
+  ogImage = "https://maatwerkopwielen.nl/unnamed.png",
+} = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Google Tag Manager -->
+<script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-58CRMJ37');</script>
+<!-- End Google Tag Manager -->
+
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="author" content="Maatwerk op Wielen">
+<meta name="theme-color" content="#0B0D0F">
+<link rel="canonical" href={canonical}>
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="Maatwerk op Wielen">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={canonical}>
+<meta property="og:image" content={ogImage}>
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/unnamed.png" type="image/png">
+<link rel="apple-touch-icon" href="/unnamed.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/style.css">
+<slot name="head" />
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-58CRMJ37"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<a class="skip-link" href="#main">Direct naar de inhoud</a>
+<header class="header">
+  <div class="header__inner">
+    <a class="brand" href="/" aria-label="Maatwerk op Wielen, naar de homepage">
+      <span class="brand__mark logo logo--mark">
+        <img src="/unnamed.png" alt="" width="1536" height="1024">
+      </span>
+      <span class="brand__name">Maatwerk op Wielen<span>Automakelaar</span></span>
+    </a>
+    <nav class="nav" id="primary-nav" aria-label="Hoofdnavigatie">
+      <a href="/#waarom">Waarom?</a>
+      <a href="/#werkwijze">Werkwijze</a>
+      <a href="/aanbod/" class="is-active" aria-current="page">Aanbod</a>
+      <a href="/#over">Over mij</a>
+      <a href="/#tarief">Tarief</a>
+      <a href="/#faq">Vragen</a>
+    </nav>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu openen">
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <a class="btn header__cta" href="/#intake">Plan gratis intake</a>
+  </div>
+</header>
+<main id="main">
+  <slot />
+</main>
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__grid">
+      <div>
+        <a class="brand" href="/" aria-label="Maatwerk op Wielen">
+          <span class="brand__mark logo logo--mark">
+            <img src="/unnamed.png" alt="" width="1536" height="1024">
+          </span>
+          <span class="brand__name">Maatwerk op Wielen<span>Automakelaar</span></span>
+        </a>
+        <p class="footer__blurb">
+          Onafhankelijk automakelaar uit Heerde, werkzaam in heel Nederland. In het
+          aanbod staan auto's van particulieren en bedrijven die ik voor hen onder de
+          aandacht breng.
+        </p>
+      </div>
+      <div>
+        <h4>Navigatie</h4>
+        <ul class="footer__links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/aanbod/">Aanbod</a></li>
+          <li><a href="/#werkwijze">Werkwijze</a></li>
+          <li><a href="/#tarief">Tarief</a></li>
+          <li><a href="/#intake">Plan gratis intake</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul class="footer__links">
+          <li><a href="tel:+31627965314">06 27965314</a></li>
+          <li><a href="https://wa.me/31627965314">WhatsApp</a></li>
+          <li><a href="mailto:jjz_93@hotmail.com">jjz_93@hotmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>&copy; <span id="year">2026</span> Maatwerk op Wielen</span>
+      <nav aria-label="Juridisch">
+        <a href="/disclaimer.html">Disclaimer</a>
+        <a href="/privacy.html">Privacy &amp; cookies</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<slot name="after" />
+<script src="/main.js" is:inline defer></script>
+</body>
+</html>
