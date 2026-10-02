@@ -1,0 +1,33 @@
+[
+  {
+    "slug": "voorbeeld-bmw-3-serie-320i",
+    "online": false,
+    "status": "beschikbaar",
+    "merk": "BMW",
+    "model": "3-serie",
+    "uitvoering": "320i Executive Edition",
+    "bouwjaar": 2020,
+    "kilometerstand": 68500,
+    "brandstof": "Benzine",
+    "transmissie": "Automaat",
+    "vermogen_pk": 184,
+    "carrosserie": "Sedan",
+    "kleur": "Mineral Grey metallic",
+    "deuren": 4,
+    "prijs": 27950,
+    "btw": "btw",
+    "aanbieder": "Particulier",
+    "locatie": "Heerde",
+    "fotos": [
+      "/auto3.png"
+    ],
+    "omschrijving": "Voorbeeldadvertentie. Zet online op true om hem te tonen. Beschrijf hier in een paar zinnen de staat van de auto, het onderhoud en waarom hij wordt verkocht.",
+    "opties": [
+      "Navigatie",
+      "Climate control",
+      "Parkeersensoren voor en achter",
+      "Stoelverwarming",
+      "LED-koplampen"
+    ]
+  }
+]

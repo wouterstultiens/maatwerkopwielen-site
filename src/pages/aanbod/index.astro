@@ -1,0 +1,88 @@
+---
+import AanbodLayout from "../../layouts/AanbodLayout.astro";
+import { autos, titel, bedrag, prijzen, btwLabel, km, statusLabel } from "../../lib/aanbod.js";
+
+// Beschikbare auto's eerst, daarna gereserveerd, verkocht als laatste.
+const volgorde = { beschikbaar: 0, gereserveerd: 1, verkocht: 2 };
+const lijst = [...autos].sort((a, b) => (volgorde[a.status] ?? 0) - (volgorde[b.status] ?? 0));
+---
+<AanbodLayout
+  title="Auto's in het aanbod | Maatwerk op Wielen"
+  description="Bekijk de auto's die via Maatwerk op Wielen worden aangeboden. Met foto's, prijs incl. en excl. btw, en direct een bezichtiging plannen."
+  canonical="https://maatwerkopwielen.nl/aanbod/"
+>
+  <section class="section aanbod-head">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Aanbod</span>
+        <h1 class="aanbod-head__title">Auto's in het aanbod</h1>
+        <p class="lead">
+          Deze auto's worden via mij aangeboden door particulieren en bedrijven.
+          Ik ben niet de eigenaar: ik breng ze onder de aandacht en regel de
+          bezichtiging. Interesse? Plan een afspraak of stel uw vraag per auto.
+        </p>
+      </div>
+
+      {lijst.length === 0 ? (
+        <div class="pane aanbod-leeg">
+          <h2>Op dit moment staat er geen auto in het aanbod</h2>
+          <p>
+            Zoekt u iets specifieks? Dan ga ik voor u op zoek in heel Nederland.
+            Het intakegesprek is gratis en vrijblijvend.
+          </p>
+          <a class="btn btn--lg" href="/#intake">Plan gratis intake</a>
+        </div>
+      ) : (
+        <ul class="autogrid">
+          {lijst.map((a) => {
+            const p = prijzen(a);
+            const status = statusLabel[a.status];
+            return (
+              <li class="autokaart reveal">
+                <a class="autokaart__link" href={`/aanbod/${a.slug}/`}>
+                  <div class="autokaart__foto">
+                    <img
+                      src={a.fotos[0]}
+                      alt={`${titel(a)} ${a.uitvoering ?? ""}`.trim()}
+                      loading="lazy"
+                      decoding="async"
+                      width="800"
+                      height="600"
+                    />
+                    {status && <span class={`autostatus autostatus--${a.status}`}>{status}</span>}
+                    {a.fotos.length > 1 && <span class="autokaart__aantal">{a.fotos.length} foto's</span>}
+                  </div>
+                  <div class="autokaart__body">
+                    <h2 class="autokaart__titel">{titel(a)}</h2>
+                    {a.uitvoering && <p class="autokaart__uitv">{a.uitvoering}</p>}
+                    <ul class="autokaart__specs">
+                      <li>{a.bouwjaar}</li>
+                      <li>{km(a.kilometerstand)}</li>
+                      <li>{a.brandstof}</li>
+                      <li>{a.transmissie}</li>
+                    </ul>
+                    <div class="autokaart__prijs">
+                      <span class="autokaart__vanaf">Vanaf</span>
+                      <span class="autokaart__bedrag">{bedrag(p.incl)}</span>
+                      <span class="autokaart__btw">
+                        {p.excl ? `${bedrag(p.excl)} excl. btw` : btwLabel(a)}
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+
+      <div class="aanbod-cta">
+        <div>
+          <h2>Staat uw auto er niet tussen?</h2>
+          <p>Ik zoek namens u in het hele Nederlandse aanbod, ook buiten de advertentiesites.</p>
+        </div>
+        <a class="btn btn--lg" href="/#intake">Plan gratis intake</a>
+      </div>
+    </div>
+  </section>
+</AanbodLayout>

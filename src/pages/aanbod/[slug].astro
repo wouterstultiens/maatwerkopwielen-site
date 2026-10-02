@@ -1,0 +1,318 @@
+---
+import AanbodLayout from "../../layouts/AanbodLayout.astro";
+import {
+  autos, titel, volledigeTitel, bedrag, prijzen, btwLabel, km, statusLabel,
+} from "../../lib/aanbod.js";
+
+export function getStaticPaths() {
+  return autos.map((auto) => ({ params: { slug: auto.slug }, props: { auto } }));
+}
+
+const { auto: a } = Astro.props;
+const p = prijzen(a);
+const naam = volledigeTitel(a);
+const url = `https://maatwerkopwielen.nl/aanbod/${a.slug}/`;
+const status = statusLabel[a.status];
+const verkocht = a.status === "verkocht";
+const absoluut = (src) => (src.startsWith("http") ? src : "https://maatwerkopwielen.nl" + src);
+
+const specs = [
+  ["Bouwjaar", a.bouwjaar],
+  ["Kilometerstand", a.kilometerstand != null ? km(a.kilometerstand) : null],
+  ["Brandstof", a.brandstof],
+  ["Transmissie", a.transmissie],
+  ["Vermogen", a.vermogen_pk ? `${a.vermogen_pk} pk` : null],
+  ["Carrosserie", a.carrosserie],
+  ["Kleur", a.kleur],
+  ["Deuren", a.deuren],
+  ["Aanbieder", a.aanbieder],
+  ["Locatie", a.locatie],
+].filter(([, v]) => v != null && v !== "");
+
+const whatsappTekst = encodeURIComponent(`Hallo Jasper, ik heb interesse in de ${naam} (${bedrag(p.incl)}) op ${url}`);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Car",
+  name: naam,
+  brand: { "@type": "Brand", name: a.merk },
+  model: a.model,
+  vehicleModelDate: String(a.bouwjaar),
+  mileageFromOdometer: { "@type": "QuantitativeValue", value: a.kilometerstand, unitCode: "KMT" },
+  fuelType: a.brandstof,
+  vehicleTransmission: a.transmissie,
+  color: a.kleur,
+  image: a.fotos.map(absoluut),
+  url,
+  offers: {
+    "@type": "Offer",
+    price: String(a.prijs),
+    priceCurrency: "EUR",
+    url,
+    availability: verkocht ? "https://schema.org/SoldOut" : "https://schema.org/InStock",
+    itemCondition: "https://schema.org/UsedCondition",
+  },
+};
+---
+<AanbodLayout
+  title={`${naam} | Aanbod Maatwerk op Wielen`}
+  description={`${naam}, ${a.bouwjaar}, ${km(a.kilometerstand)}. Vanaf ${bedrag(p.incl)}. Bekijk de foto's en plan direct een bezichtiging.`}
+  canonical={url}
+  ogImage={absoluut(a.fotos[0])}
+>
+  <section class="section auto">
+    <div class="wrap">
+      <nav class="kruimel" aria-label="Kruimelpad">
+        <a href="/aanbod/">Aanbod</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{titel(a)}</span>
+      </nav>
+
+      <div class="auto__grid">
+        <!-- Fotogalerij -->
+        <div class="galerij" data-galerij>
+          <div class="galerij__hoofd">
+            {a.fotos.map((src, i) => (
+              <img
+                class="galerij__foto"
+                src={src}
+                alt={`${naam}, foto ${i + 1} van ${a.fotos.length}`}
+                width="1200"
+                height="900"
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+                hidden={i !== 0}
+                data-index={i}
+              />
+            ))}
+            {status && <span class={`autostatus autostatus--${a.status}`}>{status}</span>}
+            {a.fotos.length > 1 && (
+              <>
+                <button class="galerij__pijl galerij__pijl--vorige" type="button" data-vorige aria-label="Vorige foto">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+                </button>
+                <button class="galerij__pijl galerij__pijl--volgende" type="button" data-volgende aria-label="Volgende foto">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+                </button>
+                <span class="galerij__teller" aria-live="polite"><span data-teller>1</span> / {a.fotos.length}</span>
+              </>
+            )}
+            <button class="galerij__groot" type="button" data-groot aria-label="Foto vergroten">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            </button>
+          </div>
+          {a.fotos.length > 1 && (
+            <div class="galerij__thumbs" role="group" aria-label="Kies een foto">
+              {a.fotos.map((src, i) => (
+                <button class="galerij__thumb" type="button" data-thumb={i} aria-label={`Toon foto ${i + 1}`} aria-pressed={i === 0 ? "true" : "false"}>
+                  <img src={src} alt="" loading="lazy" decoding="async" width="160" height="120" />
+                </button>
+              ))}
+            </div>
+          )}
+          <dialog class="lightbox" data-lightbox aria-label={`Foto's van de ${naam}`}>
+            <img class="lightbox__foto" src={a.fotos[0]} alt="" data-lightbox-foto />
+            <button class="lightbox__sluit" type="button" data-sluit aria-label="Sluiten">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+            {a.fotos.length > 1 && (
+              <>
+                <button class="galerij__pijl galerij__pijl--vorige" type="button" data-vorige aria-label="Vorige foto">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+                </button>
+                <button class="galerij__pijl galerij__pijl--volgende" type="button" data-volgende aria-label="Volgende foto">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+                </button>
+              </>
+            )}
+          </dialog>
+        </div>
+
+        <!-- Prijs en acties -->
+        <aside class="autoprijs">
+          <span class="eyebrow">{a.merk}</span>
+          <h1 class="autoprijs__titel">{titel(a)}</h1>
+          {a.uitvoering && <p class="autoprijs__uitv">{a.uitvoering}</p>}
+
+          <div class="autoprijs__kaart">
+            <span class="autoprijs__vanaf">Vanaf</span>
+            <div class="autoprijs__bedrag">{bedrag(p.incl)}</div>
+            <dl class="autoprijs__btw">
+              {p.excl ? (
+                <>
+                  <div><dt>Incl. 21% btw</dt><dd>{bedrag(p.incl)}</dd></div>
+                  <div><dt>Excl. btw</dt><dd>{bedrag(p.excl)}</dd></div>
+                </>
+              ) : (
+                <div><dt>Btw</dt><dd>{btwLabel(a)}</dd></div>
+              )}
+            </dl>
+
+            {verkocht ? (
+              <p class="autoprijs__verkocht">Deze auto is verkocht. Zoekt u iets vergelijkbaars? Dan ga ik voor u op zoek.</p>
+            ) : (
+              <div class="autoprijs__acties">
+                <a class="btn btn--lg btn--block" href="#reageren" data-soort="Bezichtiging plannen">
+                  <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M8 3v3M16 3v3M3 10h18"/><path d="M9.5 15.2l1.7 1.7 3.3-3.4"/></svg>
+                  Plan een bezichtiging
+                </a>
+                <a class="btn btn--ghost btn--lg btn--block" href="#reageren" data-soort="Vraag stellen">Stel een vraag over deze auto</a>
+                <a class="autoprijs__wa" href={`https://wa.me/31627965314?text=${whatsappTekst}`}>
+                  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.6 2 2.2 6.4 2.2 11.83c0 1.9.53 3.66 1.45 5.17L2 22l5.16-1.6a9.9 9.9 0 004.88 1.26c5.43 0 9.83-4.4 9.83-9.83S17.47 2 12.04 2z"/></svg>
+                  Of stuur een WhatsApp over deze auto
+                </a>
+              </div>
+            )}
+          </div>
+
+          <p class="autoprijs__rol">
+            Deze auto wordt via Maatwerk op Wielen aangeboden door een {a.aanbieder?.toLowerCase() === "bedrijf" ? "bedrijf" : "particulier"}.
+            Ik ben niet de verkoper. De koop en eventuele garantie lopen via de eigenaar.
+          </p>
+        </aside>
+      </div>
+
+      <!-- Gegevens en omschrijving -->
+      <div class="auto__info">
+        <div>
+          <h2 class="auto__kop">Gegevens</h2>
+          <dl class="specs">
+            {specs.map(([k, v]) => (
+              <div><dt>{k}</dt><dd>{v}</dd></div>
+            ))}
+          </dl>
+        </div>
+        <div>
+          {a.omschrijving && (
+            <>
+              <h2 class="auto__kop">Omschrijving</h2>
+              <p>{a.omschrijving}</p>
+            </>
+          )}
+          {a.opties?.length > 0 && (
+            <>
+              <h2 class="auto__kop" style="margin-top:var(--sp-6)">Opties en uitrusting</h2>
+              <ul class="checklist opties">
+                {a.opties.map((o) => (
+                  <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg> {o}</li>
+                ))}
+              </ul>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {!verkocht && (
+    <section class="section planner" id="reageren">
+      <div class="wrap">
+        <div class="section-head section-head--center">
+          <span class="eyebrow">Interesse in deze auto</span>
+          <h2>Bezichtiging plannen of een vraag stellen</h2>
+          <p class="lead">Laat uw gegevens achter, dan neem ik binnen 1 werkdag contact met u op over de {naam}.</p>
+        </div>
+
+        <div class="pane success" id="auto-success" hidden tabindex="-1">
+          <div class="success__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3>Uw aanvraag is verstuurd</h3>
+          <p>Ik neem binnen 1 werkdag contact met u op over de {naam}.</p>
+          <p style="color:var(--cream-40);font-size:.92rem">
+            Geen bericht van mij ontvangen? Stuur dan een WhatsApp naar
+            <a href="https://wa.me/31627965314">06 27965314</a>.
+          </p>
+        </div>
+
+        <form class="pane autoform" id="auto-form" novalidate data-auto={naam} data-slug={a.slug}>
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="Auto" value={naam}>
+          <input type="hidden" name="Prijs" value={`${bedrag(p.incl)} (${btwLabel(a)})`}>
+          <input type="hidden" name="Link" value={url}>
+          <div class="hp" aria-hidden="true">
+            <label for="auto-honey">Laat dit veld leeg</label>
+            <input id="auto-honey" type="text" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div class="autoform__auto">
+            <img src={a.fotos[0]} alt="" width="120" height="90" loading="lazy">
+            <div>
+              <strong>{naam}</strong>
+              <span>{a.bouwjaar} · {km(a.kilometerstand)} · {bedrag(p.incl)}</span>
+            </div>
+          </div>
+
+          <fieldset class="fieldset">
+            <legend class="fieldset__legend">Waarmee kan ik u helpen?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="Soort" value="Bezichtiging plannen" checked><span>Bezichtiging plannen</span></label>
+              <label class="chip"><input type="radio" name="Soort" value="Proefrit plannen"><span>Proefrit plannen</span></label>
+              <label class="chip"><input type="radio" name="Soort" value="Vraag stellen"><span>Vraag stellen</span></label>
+            </div>
+          </fieldset>
+
+          <div class="row" data-afspraak>
+            <div class="field">
+              <label for="auto-datum">Voorkeursdatum</label>
+              <input class="input" type="date" id="auto-datum" name="Voorkeursdatum">
+              <p class="field__err">Kies een datum vanaf morgen.</p>
+            </div>
+            <div class="field">
+              <label for="auto-dagdeel">Dagdeel</label>
+              <select class="select" id="auto-dagdeel" name="Dagdeel">
+                <option value="Maakt niet uit">Maakt niet uit</option>
+                <option value="Ochtend">Ochtend</option>
+                <option value="Middag">Middag</option>
+                <option value="Avond">Avond</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="auto-naam">Naam <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" type="text" id="auto-naam" name="naam" autocomplete="name" required placeholder="Uw volledige naam">
+              <p class="field__err">Dit veld is verplicht.</p>
+            </div>
+            <div class="field">
+              <label for="auto-telefoon">Telefoon <span class="req" aria-hidden="true">*</span></label>
+              <input class="input" type="tel" id="auto-telefoon" name="telefoon" autocomplete="tel" required placeholder="06 12345678">
+              <p class="field__err">Dit veld is verplicht.</p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="auto-email">Mailadres <span class="req" aria-hidden="true">*</span></label>
+            <input class="input" type="email" id="auto-email" name="email" autocomplete="email" required placeholder="naam@voorbeeld.nl">
+            <p class="field__err">Dit veld is verplicht.</p>
+          </div>
+          <div class="field">
+            <label for="auto-bericht">Bericht <span style="font-weight:400;color:var(--cream-40)">(optioneel)</span></label>
+            <textarea class="textarea" id="auto-bericht" name="Bericht" placeholder="Bijvoorbeeld: is de auto dealeronderhouden, of kan ik mijn huidige auto inruilen?"></textarea>
+          </div>
+          <div class="field">
+            <label class="check">
+              <input type="checkbox" name="akkoord" value="Ja, akkoord met de privacyverklaring" required>
+              <span>Ik ga ermee akkoord dat mijn gegevens gebruikt worden om contact met mij op te nemen over deze aanvraag. Zie de <a href="/privacy.html">privacyverklaring</a>. <span class="req" aria-hidden="true">*</span></span>
+            </label>
+            <p class="field__err">U moet akkoord gaan om te kunnen versturen.</p>
+          </div>
+          <div class="form__foot">
+            <button class="btn btn--block btn--lg" type="submit" id="auto-submit">Aanvraag versturen</button>
+            <div class="formmsg formmsg--err" id="auto-msg" hidden role="alert">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16.2v.2"/></svg>
+              <span id="auto-msg-text"></span>
+            </div>
+            <p class="form__alt">Liever direct contact? Bel <a href="tel:+31627965314">06 27965314</a> of stuur me een <a href={`https://wa.me/31627965314?text=${whatsappTekst}`}>WhatsApp</a>.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+  )}
+
+  <Fragment slot="after">
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd)} />
+    <script src="/aanbod.js" is:inline defer></script>
+  </Fragment>
+</AanbodLayout>
