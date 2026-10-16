@@ -1,0 +1,27 @@
+---
+/* Echte 404-pagina. Zonder dit bestand geeft de hosting op elke onbekende URL
+   de homepage terug met status 200, en ziet Google die als dubbele pagina's. */
+import AanbodLayout from "../layouts/AanbodLayout.astro";
+---
+<AanbodLayout
+  title="Pagina niet gevonden | Maatwerk op Wielen"
+  description="Deze pagina bestaat niet (meer)."
+>
+  <meta slot="head" name="robots" content="noindex">
+
+  <section class="section aanbod-head">
+    <div class="wrap">
+      <div class="pane aanbod-leeg">
+        <span class="eyebrow">404</span>
+        <h1 class="aanbod-head__title">Deze pagina bestaat niet</h1>
+        <p>
+          De link klopt niet of de pagina is verplaatst. Zoekt u een auto?
+          Dan ga ik voor u op zoek in heel Nederland. Het intakegesprek is
+          gratis en vrijblijvend.
+        </p>
+        <a class="btn btn--lg" href="/#intake">Plan gratis intake</a>
+        <a class="btn btn--ghost btn--lg" href="/">Naar de homepage</a>
+      </div>
+    </div>
+  </section>
+</AanbodLayout>
