@@ -6,7 +6,7 @@ import { autos } from "../lib/aanbod.js";
 const SITE = "https://maatwerkopwielen.nl";
 
 export function GET() {
-  const paden = ["/"];
+  const paden = ["/", "/privacy/"];
   if (autos.length > 0) {
     paden.push("/aanbod/", ...autos.map((a) => `/aanbod/${a.slug}/`));
   }
